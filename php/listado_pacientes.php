@@ -1,11 +1,8 @@
 <?php
-    $host1 = "localhost";
-    $user1 = "root";
-    $pass1 = "jatono84";
-    $db1 = "ts_hclinicas";
-    $sql = "SELECT * FROM paciente";
-    $enlace = mysqli_connect($host1, $user1, $pass1, $db1) or die("Error al conectar con la base de datos");
-    $resultado = mysqli_query($enlace, $sql);
+
+    require "conexion.php";
+    $sql = "SELECT * FROM paciente WHERE estado = 'A'";
+    $resultado = mysqli_query($conn, $sql);
 
     
 ?>
@@ -32,6 +29,8 @@
       type="text/css"
       href="../vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css"
     />
+    
+
     </head>
     <body> 
     <nav class="navbar navbar-light justify-content-between" style="background-color:#e3f2fd;">
@@ -80,16 +79,16 @@
           <?php
            while($row = $resultado->fetch_assoc()){?>
               <tr> 
-                <td><?php echo $row["id"]; ?></td>
+                <td><?php echo $row["id_paciente"]; ?></td>
                 <td><?php echo $row["dni"]; ?></td>
                 <td><?php echo $row["apellido"]; ?></td>
                 <td><?php echo $row["nombre"]; ?></td>
                 <td><?php echo $row["tel_cel"]; ?></td>
                 <td><?php echo $row["email"]; ?></td>
                 <td><?php echo $row["direccion"]; ?></td>
-                <td><a href="nuevo_int_cl_medica.php?id=<?php echo $row['id']?>" class="btn btn-info btn-sm" title="Agregar Int. Cl. Médica"><i class="far fa-notes-medical"></i> </a> 
-                <a href="editar_paciente.php?id=<?php echo $row['id']?>" class="btn btn-secondary btn-sm" title="Editar paciente"><i class="fas fa-user-edit"></i> </a> 
-                <a href="eliminar_paciente.php?id=<?php echo $row['id']?>" class="btn btn-danger btn-sm" title="Eliminar paciente"><i class="fas fa-user-times"></i> </a>
+                <td><a href="nuevo_int_cl_medica.php?id_paciente=<?php echo $row['id_paciente']?>" class="btn btn-info btn-sm" title="Agregar Int. Cl. Médica"><i class="far fa-notes-medical"></i> </a> 
+                <a href="editar_paciente.php?id_paciente_edit=<?php echo $row['id_paciente']?>" class="btn btn-secondary btn-sm" title="Editar paciente"><i class="fas fa-user-edit"></i> </a> 
+                <a href="eliminar_paciente.php?id_paciente_del=<?php echo $row['id_paciente']?>" class="btn btn-danger btn-sm" title="Eliminar paciente"><i class="fas fa-user-times"></i> </a>
                 </td>
           
           <?php } ?>
@@ -103,7 +102,7 @@
 
         </div>
         
-        
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->

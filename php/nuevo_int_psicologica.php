@@ -31,9 +31,10 @@
         <form id="form_e" action="nuevo_insert.php" method="POST" name="nuevo_cl_medica">
         <div class="container mt-5 bg-light">
         <br>
-        <h2 align='left'>Intervencion Clínica Médica</h2><br>
+        <h2 align='left'>Intervención Psicológica</h2><br>
         <h2 align='left'>Datos Personales</h2><br>
         <div class="form-row">
+            
             <div class="form-group col-md-6">
                 <label for="inputDNI">DNI</label>
                 <input type="text" class="form-control" name="inputDNI" placeholder="Ingrese su nro de documento" required>
@@ -51,59 +52,8 @@
                 <input type="text" class="form-control" name="inputEdad" placeholder="Edad" >
             </div>
             <div class="form-group col-md-6">
-                    <label for="inputObraSocial">Obra Social</label>
-                    <select class="form-control form-control" name="inputObraSocial" required>
-                      <option value="" disabled selected>Obra Social</option>
-                      <option value="PARTICULAR">PARTICULAR</option>
-                      <option value="APOS">APOS</option>
-                      <option value="OSUNLAR">OSUNLAR</option>
-                      <option value="OSPIDA">OSPIDA</option>
-                      <option value="OSECAC">OSECAC</option>
-                      <option value="OSPIV">OSPIV</option>
-                      <option value="OSDA">OSDA</option>
-                      <option value="OSDE BINARIO">OSDE BINARIO</option>
-                      <option value="OSPRERA">OSPRERA</option>
-                      <option value="APSA">APSA</option>
-                      <option value="TAC">TAC</option> 
-                      <option value="OSBA">OSBA</option>
-                      <option value="OMIT">OMIT</option>
-                      <option value="PAMI">PAMI</option>
-                      <option value="IPAUSS">IPAUSS</option>
-                      <option value="DASUTEN">DASUTEN</option>
-                      <option value="IOSE">IOSE</option> 
-                      <option value="OSPRA">OSPRA</option>
-                      <option value="HOSPITAL DR. ENRIQUE VERA BARROS">HOSPITAL DR. ENRIQUE VERA BARROS</option>
-                      <option value="RED DE SEGUROS MEDICOS">RED DE SEGUROS MEDICOS</option>
-                      <option value="HOSPITAL DE LA MADRE Y EL NIÑO">HOSPITAL DE LA MADRE Y EL NIÑO</option>
-                      <option value="S.R.T.">S.R.T.</option>
-                      <option value="FUNDACION">FUNDACION</option> 
-                      <option value="" disabled selected>Obra Social</option>
-                      <option value="OBRA SOCIAL SIN CONVENIO">OBRA SOCIAL SIN CONVENIO</option>
-                      <option value="OBRA SOCIAL SIN PRESTADOR">OBRA SOCIAL SIN PRESTADOR</option>
-                      <option value="SUMAR">SUMAR</option>
-                      <option value="GALENO">GALENO</option>
-                      </select> 
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputTelCel">Teléfono celular</label>
-                <input type="text" class="form-control" name="inputTelCel" placeholder="Celular" >
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputEmail">Email</label>
-                <input type="text" class="form-control" name="inputEmail" placeholder="Email" >
-            </div>
-            <div class="form-group col-md-6">
                 <label for="inputDireccion">Dirección</label>
                 <input type="text" class="form-control" name="inputDireccion" placeholder="Ingrese su dirección">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputFechaAlta">Fecha de alta</label>
-                <input type="date" class="form-control" name="inputFechaAlta" value="2020-03-01">
-            </div>
-            <div class="form-group col-md-6">
-            <br>
-                <label for="inputBajoControl">¿Se encuentra bajo control médico?</label>
-                <input type="radio" name="inputBajoControl" value="Si">  Si  <input type="radio" name="inputBajoControl" value="No">  No
             </div>
             <hr>
         </div>
@@ -111,29 +61,30 @@
             <h2 align='left'>Datos de Relevamiento</h2><br>
             <div class="form-row">
             <div class="form-group col-md-6">
-            <label for="inputConsignarSintomatologia">Estado clínico actual (síntomas presentes)</label>
-                <textarea class="form-control" name="inputConsignarSintomatologia" rows="3" cols="50">Estado clínico actual...</textarea>
+                <label for="inputMedicacion">¿Presenta sintomatología?</label><br> 
+                <input type="radio" name="inputMedicacion" value="Si">  Si  <input type="radio" name="inputMedicacion" value="No">  No
             </div>
             <div class="form-group col-md-6">
             <label for="inputConsignarSintomatologia">Medicación</label>
-                <textarea class="form-control" name="inputConsignarSintomatologia" rows="3" cols="50">Medicación...</textarea>
-            </div>
-            <div class="form-group col-md-12">
-            <label for="inputConsignarSintomatologia">Estudios realizados hasta la fecha</label>
-                <textarea class="form-control" name="inputConsignarSintomatologia" rows="3" cols="50">Estudios realizados hasta la fecha...</textarea>
-            </div>
-            <div class="form-group col-md-12">
-            <label for="inputConsignarSintomatologia">Consulta médica (breve descripción de la información)</label>
-                <textarea class="form-control" name="inputConsignarSintomatologia" rows="8" cols="50">Estudios realizados hasta la fecha...</textarea>
+                <textarea class="form-control" name="inputConsignarSintomatologia" rows="3" cols="50">Estado clínico actual...</textarea>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputBajoControl">¿Requiere interconsulta?</label><br> 
                 <input type="radio" name="inputBajoControl" value="Si">  Si  <input type="radio" name="inputBajoControl" value="No">  No
             </div>
             <div class="form-group col-md-6">
-            <label for="inputBajoControl">Consignar especialidad</label><br> 
-                <label><input type="checkbox" id="cbox1" value="first_checkbox"> Psicológica</label>
-                <label><input type="checkbox" id="cbox2" value="second_checkbox"> Cardiológica</label>
+                <label for="inputConsignarMedicacion">Consignar especialidad</label>
+                <textarea class="form-control" name="inputConsignarMedicacion" rows="3" cols="50">Medicación...</textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputFechaAlta">Fecha</label>
+                <input type="date" class="form-control" name="inputFechaAlta" value="2020-03-01">
+            </div>
+            <div class="form-group col-md-6">
+            <label for="inputBajoControl">Modalidad de la intervención</label><br> 
+                <label><input type="checkbox" id="cbox1" value="first_checkbox"> Llamado telefónico</label>
+                <label><input type="checkbox" id="cbox2" value="second_checkbox"> Videollamada</label>
+                <label><input type="checkbox" id="cbox2" value="second_checkbox"> Presencial</label>
                 <label><input type="checkbox" id="todos" value="second_checkbox"> Todos</label>
                 
                 <script>
@@ -147,8 +98,6 @@
 
                     }
                 });
-
-
                 function seleccionar_todo(){
                         for (i=0;i<document.nuevo_cl_medica.elements.length;i++)
                             if(document.nuevo_cl_medica.elements[i].type == "checkbox")
@@ -160,24 +109,27 @@
                                 document.nuevo_cl_medica.elements[i].checked=0
                     }
                 </script>
+            </div>
 
-            </div>
             <div class="form-group col-md-6">
-                <label for="inputMedicacion">¿Requiere estudios de Laboratorio?</label><br> 
-                <input type="radio" name="inputMedicacion" value="Si">  Si  <input type="radio" name="inputMedicacion" value="No">  No
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputConsignarMedicacion">Consignar estudios</label>
-                <textarea class="form-control" name="inputConsignarMedicacion" rows="3" cols="50">Medicación...</textarea>
-            </div>
-            
-            <div class="form-group col-md-6">
-                <label for="inputFamiliarCovid">¿Requiere consultas posteriores?</label><br> 
+                <label for="inputFamiliarCovid">¿Requiere articulación con otras instituciones de asistencia en Salud Mental?</label><br> 
                 <input type="radio" name="inputFamiliarCovid" value="Si">  Si  <input type="radio" name="inputFamiliarCovid" value="No">  No
             </div>
+            <div class="form-group col-md-6">
+                <label for="inputConsignarMedicacion">Consignar Institución</label>
+                <textarea class="form-control" name="inputConsignarMedicacion" rows="3" cols="50">Medicación...</textarea>
+            </div>
             <div class="form-group col-md-12">
-                <label for="inputConsignarMedicacion">Seguimiento</label>
-                <textarea class="form-control" name="inputConsignarMedicacion" rows="8" cols="50">Seguimiento...</textarea>
+            <label for="inputConsignarSintomatologia">Grupo familiar</label>
+                <textarea class="form-control" name="inputConsignarSintomatologia" rows="8" cols="50"></textarea>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="inputConsignarMedicacion">Breve reseña de la intervención</label>
+                <textarea class="form-control" name="inputConsignarMedicacion" rows="8" cols="50"></textarea>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="inputConsignarMedicacion">Seguimiento / Acompañamiento</label>
+                <textarea class="form-control" name="inputConsignarMedicacion" rows="8" cols="50"></textarea>
             </div>
 
         </div>
