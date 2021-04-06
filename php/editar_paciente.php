@@ -1,7 +1,9 @@
 <?php
 include("conexion.php");
+
 if(isset($_GET['id_paciente_edit'])) {
   $id_paciente = $_GET['id_paciente_edit'];
+  //echo $id_paciente;
   $query = "SELECT * FROM paciente WHERE id_paciente = $id_paciente";
   $result = mysqli_query($conn, $query);
   if (mysqli_num_rows($result) > 0) {
@@ -66,7 +68,7 @@ if(isset($_GET['id_paciente_edit'])) {
             <div></div>   
         </nav>
 
-        <form id="form_e" action="nuevo_insert.php" method="POST">
+        <form id="form_e" action="editar_paciente_edit.php" method="POST">
         <div class="container mt-5 bg-light">
         <br>
         <h2 align='left'>Datos Personales</h2><br>
@@ -148,8 +150,12 @@ if(isset($_GET['id_paciente_edit'])) {
             </div>
             <div class="form-group col-md-6">
             <br>
-                <label for="inputEstuvoInternado">¿Estuvo internado/a?</label>  
-                <input type="radio" name="inputEstuvoInternado" value="Si">  Si  <input type="radio" name="inputEstuvoInternado" value="No">  No <br>
+                <label for="inputEstuvoInternado">¿Estuvo internado/a?</label><br>
+                <?php $siIsChecked = $iestuvo_internado == 'Si' ? 'checked' : ''; ?>
+                <input type="radio" name="inputEstuvoInternado" value="Si" <?php echo $siIsChecked ?> > Si
+                <?php $noIsChecked = $iestuvo_internado == 'No' ? 'checked' : ''; ?>  
+                <input type="radio" name="inputEstuvoInternado" value="No" <?php echo $noIsChecked ?>>  No <br>
+                
             </div>
             <hr>
         </div>
@@ -157,16 +163,22 @@ if(isset($_GET['id_paciente_edit'])) {
             <h2 align='left'>Datos de Relevamiento</h2><br>
             <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputBajoSeguimiento">¿Se encuentra bajo seguimiento de algún profesional luego del Covid-19?</label><br> 
-                <input type="radio" name="inputBajoSeguimiento" value="Si">  Si  <input type="radio" name="inputBajoSeguimiento" value="No">  No
+                <label for="inputBajoSeguimiento">¿Se encuentra bajo seguimiento de algún profesional luego del Covid-19?</label><br>
+                <?php $siIsChecked = $ibajo_seguimiento == 'Si' ? 'checked' : ''; ?>
+                <input type="radio" name="inputBajoSeguimiento" value="Si" <?php echo $siIsChecked ?>>  Si 
+                <?php $noIsChecked = $ibajo_seguimiento == 'No' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputBajoSeguimiento" value="No" <?php echo $noIsChecked ?>>  No
             </div>
             <div class="form-group col-md-6">
                 <label for="inputBajoSeguimientoProfesional">Consignar Profesional</label>
                 <input type="text" class="form-control" name="inputBajoSeguimientoProfesional" value="<?php echo $ibajo_seguimiento_profesional;?>" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="inputSintomatologia">¿Presenta sintomatología?</label><br> 
-                <input type="radio" name="inputSintomatologia" value="Si">  Si  <input type="radio" name="inputSintomatologia" value="No">  No
+                <label for="inputSintomatologia">¿Presenta sintomatología?</label><br>
+                <?php $siIsChecked = $isintomatologia == 'Si' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputSintomatologia" value="Si" <?php echo $siIsChecked ?>>  Si 
+                <?php $noIsChecked = $isintomatologia == 'No' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputSintomatologia" value="No" <?php echo $noIsChecked ?>>  No
             </div>
             <div class="form-group col-md-6">
             <label for="inputConsignarSintomatologia">Consignar Sintomatología</label>
@@ -174,7 +186,10 @@ if(isset($_GET['id_paciente_edit'])) {
             </div>
             <div class="form-group col-md-6">
                 <label for="inputBajoControl">¿Se encuentra bajo control médico?</label><br> 
-                <input type="radio" name="inputBajoControl" value="Si">  Si  <input type="radio" name="inputBajoControl" value="No">  No
+                <?php $siIsChecked = $ibajo_control == 'Si' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputBajoControl" value="Si" <?php echo $siIsChecked ?>>  Si 
+                <?php $noIsChecked = $ibajo_control == 'No' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputBajoControl" value="No" <?php echo $noIsChecked ?>>  No
             </div>
             <div class="form-group col-md-6">
                 <label for="inputBajoControlProfesional">Consignar Profesional</label>
@@ -182,7 +197,10 @@ if(isset($_GET['id_paciente_edit'])) {
             </div>
             <div class="form-group col-md-6">
                 <label for="inputMedicacion">¿Está tomando medicación actualmente?</label><br> 
-                <input type="radio" name="inputMedicacion" value="Si">  Si  <input type="radio" name="inputMedicacion" value="No">  No
+                <?php $siIsChecked = $imedicacion == 'Si' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputMedicacion" value="Si" <?php echo $siIsChecked ?>>  Si  
+                <?php $noIsChecked = $imedicacion == 'No' ? 'checked' : ''; ?>
+                <input type="radio" name="inputMedicacion" value="No" <?php echo $noIsChecked ?>>  No
             </div>
             <div class="form-group col-md-6">
                 <label for="inputConsignarMedicacion">Consignar medicación</label>
@@ -191,16 +209,24 @@ if(isset($_GET['id_paciente_edit'])) {
             
             <div class="form-group col-md-6">
                 <label for="inputFamiliarCovid">¿Alguién más en la familia fue diagnosticado con Covid-19?</label><br> 
-                <input type="radio" name="inputFamiliarCovid" value="Si">  Si  <input type="radio" name="inputFamiliarCovid" value="No">  No
+                <?php $siIsChecked = $ifamiliar_covid == 'Si' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputFamiliarCovid" value="Si" <?php echo $siIsChecked ?>>  Si  
+                <?php $noIsChecked = $ifamiliar_covid == 'No' ? 'checked' : ''; ?>
+                <input type="radio" name="inputFamiliarCovid" value="No" <?php echo $noIsChecked ?>>  No
             </div>
             <div class="form-group col-md-6">
                 <label for="inputMovilidad">¿Cuenta con medio de movilidad para acercarse al hospital?</label><br> 
-                <input type="radio" name="inputMovilidad" value="Si">  Si  <input type="radio" name="inputMovilidad" value="No">  No
+                <?php $siIsChecked = $imovilidad == 'Si' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputMovilidad" value="Si" <?php echo $siIsChecked ?>>  Si  
+                <?php $noIsChecked = $imovilidad == 'No' ? 'checked' : ''; ?>
+                <input type="radio" name="inputMovilidad" value="No" <?php echo $noIsChecked ?>>  No
             </div>
-
+            <?php
+             echo "<input type='hidden' name='id_paciente' value='$id_paciente'>";
+            ?>
         </div>
         <br>
-        <input id="form" type="submit" class="btn btn-primary float-right my-2" value="Dar de Alta" name="enviar_form">    
+        <input id="form" type="submit" class="btn btn-primary float-right my-2" value="Actualizar" name="enviar_form">    
     </div>
 </form>
 
