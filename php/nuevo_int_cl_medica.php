@@ -1,3 +1,49 @@
+<?php
+include("conexion.php");
+
+if(isset($_GET['id_paciente'])) {
+  if(isset($_GET['id_int_cl_medica'])){
+    $id_int_cl_medica = $_GET['id_int_cl_medica'];
+    //echo $id_int_cl_medica;
+  }
+    $id_paciente = $_GET['id_paciente'];
+
+  //echo $id_paciente;
+  $query = "SELECT * FROM paciente WHERE id_paciente = $id_paciente";
+  $result = mysqli_query($conn, $query);
+  if (mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    
+    $idni = $row["dni"];
+    
+    $iapellido = $row["apellido"];
+    $inombre = $row["nombre"];
+    //echo $inombre;
+    $itel_cel = $row["tel_cel"];
+    $iemail = $row["email"];
+    $idireccion = $row["direccion"];
+    $iedad = $row["edad"];
+    $iobra_social = $row["obra_social"];
+    $iocupacion = $row["ocupacion"];  
+    $idisp_horaria = $row["disp_horaria"];
+    $ifecha_alta = $row["fecha_alta"];
+    $iestuvo_internado = $row["estuvo_internado"];
+
+    $ibajo_seguimiento = $row["bajo_seguimiento"];
+    $ibajo_seguimiento_profesional = $row["bajo_seguimiento_profesional"];
+    $isintomatologia = $row["sintomatologia"];
+    $iconsignar_sintomatologia = $row["consignar_sintomatologia"];
+    $ibajo_control = $row["bajo_control"];
+    $ibajo_control_profesional = $row["bajo_control_profesional"];
+    $imedicacion = $row["medicacion"];
+    $iconsignar_medicacion = $row["consignar_medicacion"];
+    $ifamiliar_covid = $row["familiar_covid"];
+    $imovilidad = $row["movilidad"];
+    //$id_paciente = $_POST['id_paciente'];
+  
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -28,7 +74,7 @@
             <div></div>   
         </nav>
 
-        <form id="form_e" action="nuevo_insert.php" method="POST" name="nuevo_cl_medica">
+        <form id="form_e" action="nuevo_insert_int_cl_medica.php" method="POST" name="nuevo_cl_medica">
         <div class="container mt-5 bg-light">
         <br>
         <h2 align='left'>Intervencion Clínica Médica</h2><br>
@@ -36,74 +82,49 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputDNI">DNI</label>
-                <input type="text" class="form-control" name="inputDNI" placeholder="Ingrese su nro de documento" required>
+                <input type="text" class="form-control" name="inputDNI" value="<?php echo $idni;?>" disabled>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputApellido">Apellido/s</label>
-                <input type="text" class="form-control" name="inputApellido" placeholder="Apellido" required>
+                <input type="text" class="form-control" name="inputApellido" value="<?php echo $iapellido;?>" disabled>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputNombre">Nombres/s</label>
-                <input type="text" class="form-control" name="inputNombre" placeholder="Nombre Completo" >
+                <input type="text" class="form-control" name="inputNombre" value="<?php echo $inombre;?>" disabled >
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEdad">Edad</label>
-                <input type="text" class="form-control" name="inputEdad" placeholder="Edad" >
+                <input type="text" class="form-control" name="inputEdad" value="<?php echo $iedad;?>" disabled >
             </div>
             <div class="form-group col-md-6">
                     <label for="inputObraSocial">Obra Social</label>
-                    <select class="form-control form-control" name="inputObraSocial" required>
-                      <option value="" disabled selected>Obra Social</option>
-                      <option value="PARTICULAR">PARTICULAR</option>
-                      <option value="APOS">APOS</option>
-                      <option value="OSUNLAR">OSUNLAR</option>
-                      <option value="OSPIDA">OSPIDA</option>
-                      <option value="OSECAC">OSECAC</option>
-                      <option value="OSPIV">OSPIV</option>
-                      <option value="OSDA">OSDA</option>
-                      <option value="OSDE BINARIO">OSDE BINARIO</option>
-                      <option value="OSPRERA">OSPRERA</option>
-                      <option value="APSA">APSA</option>
-                      <option value="TAC">TAC</option> 
-                      <option value="OSBA">OSBA</option>
-                      <option value="OMIT">OMIT</option>
-                      <option value="PAMI">PAMI</option>
-                      <option value="IPAUSS">IPAUSS</option>
-                      <option value="DASUTEN">DASUTEN</option>
-                      <option value="IOSE">IOSE</option> 
-                      <option value="OSPRA">OSPRA</option>
-                      <option value="HOSPITAL DR. ENRIQUE VERA BARROS">HOSPITAL DR. ENRIQUE VERA BARROS</option>
-                      <option value="RED DE SEGUROS MEDICOS">RED DE SEGUROS MEDICOS</option>
-                      <option value="HOSPITAL DE LA MADRE Y EL NIÑO">HOSPITAL DE LA MADRE Y EL NIÑO</option>
-                      <option value="S.R.T.">S.R.T.</option>
-                      <option value="FUNDACION">FUNDACION</option> 
-                      <option value="" disabled selected>Obra Social</option>
-                      <option value="OBRA SOCIAL SIN CONVENIO">OBRA SOCIAL SIN CONVENIO</option>
-                      <option value="OBRA SOCIAL SIN PRESTADOR">OBRA SOCIAL SIN PRESTADOR</option>
-                      <option value="SUMAR">SUMAR</option>
-                      <option value="GALENO">GALENO</option>
+                    <select class="form-control form-control" name="inputObraSocial" required disabled>
+                    <option value="<?php echo $iobra_social;?>" disabled selected><?php echo $iobra_social;?></option>
+                      
                       </select> 
             </div>
             <div class="form-group col-md-6">
                 <label for="inputTelCel">Teléfono celular</label>
-                <input type="text" class="form-control" name="inputTelCel" placeholder="Celular" >
+                <input type="text" class="form-control" name="inputTelCel" value="<?php echo $itel_cel;?>" disabled >
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail">Email</label>
-                <input type="text" class="form-control" name="inputEmail" placeholder="Email" >
+                <input type="text" class="form-control" name="inputEmail" value="<?php echo $iemail;?>" disabled >
             </div>
             <div class="form-group col-md-6">
                 <label for="inputDireccion">Dirección</label>
-                <input type="text" class="form-control" name="inputDireccion" placeholder="Ingrese su dirección">
+                <input type="text" class="form-control" name="inputDireccion" value="<?php echo $idireccion;?>" disabled>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputFechaAlta">Fecha de alta</label>
-                <input type="date" class="form-control" name="inputFechaAlta" value="2020-03-01">
+                <input type="date" class="form-control" name="inputFechaAlta" value="<?php echo $ifecha_alta;?>" disabled>
             </div>
             <div class="form-group col-md-6">
-            <br>
-                <label for="inputBajoControl">¿Se encuentra bajo control médico?</label>
-                <input type="radio" name="inputBajoControl" value="Si">  Si  <input type="radio" name="inputBajoControl" value="No">  No
+                <label for="inputBajoControl">¿Se encuentra bajo control médico?</label><br> 
+                <?php $siIsChecked = $ibajo_control == 'Si' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputBajoControl" value="Si" <?php echo $siIsChecked ?> disabled>  Si 
+                <?php $noIsChecked = $ibajo_control == 'No' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputBajoControl" value="No" <?php echo $noIsChecked ?> disabled>  No
             </div>
             <hr>
         </div>
@@ -111,30 +132,30 @@
             <h2 align='left'>Datos de Relevamiento</h2><br>
             <div class="form-row">
             <div class="form-group col-md-6">
-            <label for="inputConsignarSintomatologia">Estado clínico actual (síntomas presentes)</label>
-                <textarea class="form-control" name="inputConsignarSintomatologia" rows="3" cols="50">Estado clínico actual...</textarea>
+            <label for="inputEstadoClinicoActual">Estado clínico actual (síntomas presentes)</label>
+                <textarea class="form-control" name="inputEstadoClinicoActual" rows="3" cols="50" placeholder="Estado clínico actual..."></textarea>
             </div>
             <div class="form-group col-md-6">
-            <label for="inputConsignarSintomatologia">Medicación</label>
-                <textarea class="form-control" name="inputConsignarSintomatologia" rows="3" cols="50">Medicación...</textarea>
+            <label for="inputMedicacion">Medicación</label>
+                <textarea class="form-control" name="inputMedicacion" rows="3" cols="50" placeholder="Medicación..."></textarea>
             </div>
             <div class="form-group col-md-12">
-            <label for="inputConsignarSintomatologia">Estudios realizados hasta la fecha</label>
-                <textarea class="form-control" name="inputConsignarSintomatologia" rows="3" cols="50">Estudios realizados hasta la fecha...</textarea>
+            <label for="inputEstudiosRealizados">Estudios realizados hasta la fecha</label>
+                <textarea class="form-control" name="inputEstudiosRealizados" rows="3" cols="50" placeholder="Estudios realizados hasta la fecha..."></textarea>
             </div>
             <div class="form-group col-md-12">
-            <label for="inputConsignarSintomatologia">Consulta médica (breve descripción de la información)</label>
-                <textarea class="form-control" name="inputConsignarSintomatologia" rows="8" cols="50">Estudios realizados hasta la fecha...</textarea>
+            <label for="inputConsultaMedicaBreve">Consulta médica (breve descripción de la información)</label>
+                <textarea class="form-control" name="inputConsultaMedicaBreve" rows="8" cols="50" placeholder="Consulta médica (breve descripción de la intervención)..."></textarea>
             </div>
             <div class="form-group col-md-6">
-                <label for="inputBajoControl">¿Requiere interconsulta?</label><br> 
-                <input type="radio" name="inputBajoControl" value="Si">  Si  <input type="radio" name="inputBajoControl" value="No">  No
+                <label for="inputRequiereInterconsulta">¿Requiere interconsulta?</label><br>
+                <input type="radio" name="inputRequiereInterconsulta" value="Si" required>  Si  <input type="radio" name="inputRequiereInterconsulta" value="No" required>  No 
             </div>
             <div class="form-group col-md-6">
-            <label for="inputBajoControl">Consignar especialidad</label><br> 
-                <label><input type="checkbox" id="cbox1" value="first_checkbox"> Psicológica</label>
-                <label><input type="checkbox" id="cbox2" value="second_checkbox"> Cardiológica</label>
-                <label><input type="checkbox" id="todos" value="second_checkbox"> Todos</label>
+            <label for="inputConsignarEspecialidad">Consignar especialidad</label><br> 
+                <label><input type="checkbox" name="especialidad[]" value="PSICOLOGICA"> PSICOLOGICA</label>
+                <label><input type="checkbox" name="especialidad[]" value="CARDIOLOGICA"> CARDIOLOGICA</label>
+                <label><input type="checkbox" id="todos" value="Todos"> Todos</label>
                 
                 <script>
                 var checkbox = document.getElementById('todos');
@@ -147,7 +168,6 @@
 
                     }
                 });
-
 
                 function seleccionar_todo(){
                         for (i=0;i<document.nuevo_cl_medica.elements.length;i++)
@@ -163,26 +183,31 @@
 
             </div>
             <div class="form-group col-md-6">
-                <label for="inputMedicacion">¿Requiere estudios de Laboratorio?</label><br> 
-                <input type="radio" name="inputMedicacion" value="Si">  Si  <input type="radio" name="inputMedicacion" value="No">  No
+                <label for="inputRequiereLaboratorio">¿Requiere estudios de Laboratorio?</label><br> 
+                <input type="radio" name="inputRequiereLaboratorio" value="Si" required>  Si  <input type="radio" name="inputRequiereLaboratorio" value="No" required>  No
             </div>
             <div class="form-group col-md-6">
-                <label for="inputConsignarMedicacion">Consignar estudios</label>
-                <textarea class="form-control" name="inputConsignarMedicacion" rows="3" cols="50">Medicación...</textarea>
+                <label for="inputConsignarLaboratorio">Consignar estudios</label>
+                <textarea class="form-control" name="inputConsignarLaboratorio" rows="3" cols="50" placeholder="Consignar estudios..."></textarea>
             </div>
             
             <div class="form-group col-md-6">
-                <label for="inputFamiliarCovid">¿Requiere consultas posteriores?</label><br> 
-                <input type="radio" name="inputFamiliarCovid" value="Si">  Si  <input type="radio" name="inputFamiliarCovid" value="No">  No
+                <label for="inputRequiereConsultaPosterior">¿Requiere consultas posteriores?</label><br> 
+                <input type="radio" name="inputRequiereConsultaPosterior" value="Si" required>  Si  <input type="radio" name="inputRequiereConsultaPosterior" value="No" required>  No  
             </div>
             <div class="form-group col-md-12">
-                <label for="inputConsignarMedicacion">Seguimiento</label>
-                <textarea class="form-control" name="inputConsignarMedicacion" rows="8" cols="50">Seguimiento...</textarea>
+                <label for="inputSeguimiento">Seguimiento</label>
+                <textarea class="form-control" name="inputSeguimiento" rows="8" cols="50" placeholder="Seguimiento..."></textarea>
             </div>
+            <?php
+             echo "<input type='hidden' name='id_paciente' value='$id_paciente'>";
+             echo "<input type='hidden' name='id_int_cl_medica' value='$id_int_cl_medica'>";
+             //echo $id_int_cl_medica;
+            ?>
 
         </div>
         <br>
-        <input id="form" type="submit" class="btn btn-primary float-right my-2" value="Dar de Alta" name="enviar_form">    
+        <input id="form" type="submit" class="btn btn-primary float-right my-2" value="Guardar intervención" name="enviar_form">    
     </div>
 </form>
 

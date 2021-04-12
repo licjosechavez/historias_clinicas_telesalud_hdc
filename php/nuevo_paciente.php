@@ -110,7 +110,7 @@
             <div class="form-group col-md-6">
             <br>
                 <label for="inputEstuvoInternado">¿Estuvo internado/a?</label>  
-                <input type="radio" name="inputEstuvoInternado" value="Si">  Si  <input type="radio" name="inputEstuvoInternado" value="No">  No <br>
+                <input type="radio" name="inputEstuvoInternado" value="Si">  Si  <input type="radio" name="inputEstuvoInternado" value="No" required>  No <br>
             </div>
             <hr>
         </div>
@@ -119,44 +119,44 @@
             <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputBajoSeguimiento">¿Se encuentra bajo seguimiento de algún profesional luego del Covid-19?</label><br> 
-                <input type="radio" name="inputBajoSeguimiento" value="Si">  Si  <input type="radio" name="inputBajoSeguimiento" value="No">  No
+                <input type="radio" name="inputBajoSeguimiento" value="Si">  Si  <input type="radio" name="inputBajoSeguimiento" value="No" required>  No
             </div>
             <div class="form-group col-md-6">
                 <label for="inputBajoSeguimientoProfesional">Consignar Profesional</label>
-                <input type="text" class="form-control" name="inputBajoSeguimientoProfesional" placeholder="Profesional" required>
+                <input type="text" class="form-control" name="inputBajoSeguimientoProfesional" placeholder="Profesional">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputSintomatologia">¿Presenta sintomatología?</label><br> 
-                <input type="radio" name="inputSintomatologia" value="Si">  Si  <input type="radio" name="inputSintomatologia" value="No">  No
+                <input type="radio" name="inputSintomatologia" value="Si">  Si  <input type="radio" name="inputSintomatologia" value="No" required>  No
             </div>
             <div class="form-group col-md-6">
             <label for="inputConsignarSintomatologia">Consignar Sintomatología</label>
-                <textarea class="form-control" name="inputConsignarSintomatologia" rows="3" cols="50">Sintomatología...</textarea>
+                <textarea class="form-control" name="inputConsignarSintomatologia" rows="3" cols="50" placeholder="Sintomatología..."></textarea>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputBajoControl">¿Se encuentra bajo control médico?</label><br> 
-                <input type="radio" name="inputBajoControl" value="Si">  Si  <input type="radio" name="inputBajoControl" value="No">  No
+                <input type="radio" name="inputBajoControl" value="Si">  Si  <input type="radio" name="inputBajoControl" value="No" required>  No
             </div>
             <div class="form-group col-md-6">
                 <label for="inputBajoControlProfesional">Consignar Profesional</label>
-                <input type="text" class="form-control" name="inputBajoControlProfesional" placeholder="Profesional" required>
+                <input type="text" class="form-control" name="inputBajoControlProfesional" placeholder="Profesional">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputMedicacion">¿Está tomando medicación actualmente?</label><br> 
-                <input type="radio" name="inputMedicacion" value="Si">  Si  <input type="radio" name="inputMedicacion" value="No">  No
+                <input type="radio" name="inputMedicacion" value="Si">  Si  <input type="radio" name="inputMedicacion" value="No" required>  No
             </div>
             <div class="form-group col-md-6">
                 <label for="inputConsignarMedicacion">Consignar medicación</label>
-                <textarea class="form-control" name="inputConsignarMedicacion" rows="3" cols="50">Medicación...</textarea>
+                <textarea class="form-control" name="inputConsignarMedicacion" rows="3" cols="50" placeholder="Medicación..."></textarea>
             </div>
             
             <div class="form-group col-md-6">
                 <label for="inputFamiliarCovid">¿Alguién más en la familia fue diagnosticado con Covid-19?</label><br> 
-                <input type="radio" name="inputFamiliarCovid" value="Si">  Si  <input type="radio" name="inputFamiliarCovid" value="No">  No
+                <input type="radio" name="inputFamiliarCovid" value="Si">  Si  <input type="radio" name="inputFamiliarCovid" value="No" required>  No
             </div>
             <div class="form-group col-md-6">
                 <label for="inputMovilidad">¿Cuenta con medio de movilidad para acercarse al hospital?</label><br> 
-                <input type="radio" name="inputMovilidad" value="Si">  Si  <input type="radio" name="inputMovilidad" value="No">  No
+                <input type="radio" name="inputMovilidad" value="Si">  Si  <input type="radio" name="inputMovilidad" value="No" required>  No
             </div>
 
         </div>
