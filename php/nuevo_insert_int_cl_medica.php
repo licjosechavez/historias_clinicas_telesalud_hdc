@@ -76,7 +76,7 @@ require "conexion.php";
                     //echo " y existe en la posición $pos";
                     /*$query4 = "INSERT INTO int_cardiologica (id_int_cl_medica) VALUES ($id_int_cl_medica);";
                     $result4 = mysqli_query($conn, $query4);*/
-                    echo "agregar tab cardio";
+                    //echo "agregar tab cardio";
                     }
                 else {
                       header('Location: ./listado_pacientes.php');

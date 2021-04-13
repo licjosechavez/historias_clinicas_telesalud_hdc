@@ -1,96 +1,107 @@
 <?php
+    
     require "./php/conexion.php";
-    //total pacientes registrados
-    $consulta = "SELECT * FROM paciente";
-    $resultado = mysqli_query($conn, $consulta);
-    $total_pacientes = mysqli_num_rows($resultado); 
-    //total pacientes bajo seguimiento medico
-    $consulta1 = "SELECT * FROM paciente WHERE bajo_seguimiento = 'Si'";
-    $resultado1 = mysqli_query($conn, $consulta1);
-    $total_bajo_seg = mysqli_num_rows($resultado1); 
-    //total pacientes con movilidad
-    $consulta2 = "SELECT * FROM paciente WHERE movilidad = 'Si'";
-    $resultado2 = mysqli_query($conn, $consulta2);
-    $total_movilidad = mysqli_num_rows($resultado2); 
+    session_start();
+    
+    if($_POST){
+        $usuario = $_POST['usuario'];
+        $password = $_POST['password'];
+
+        $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario'"; 
+        //echo $sql;
+        $resultado = $conn->query($sql);
+        //$resultado = $mysqli->query($sql);
+        $num = $resultado->num_rows;
+
+        if($num > 0){
+            
+            $row = $resultado->fetch_assoc();
+            $password_bd = $row['password'];
+
+            $pass_cifrado = sha1($password);
+
+            if($password_bd == $pass_cifrado){
+                echo "las pass coinciden";
+
+                $_SESSION['nombre_apellido'] = $row['nombre_apellido'];
+                $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
+                $_SESSION['id_usuario'] = $row['id_usuario'];
+
+                header("Location: dashboard.php");
+
+
+            } else {
+                echo "La contraseña no coincide";
+            }
+
+
+            }else {
+                echo "No existe el usuario";
+        }
+    }
+	
+	
+	
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Historia Clinica TeleSalud</title>
-        <link href="./css/bootstrap.min.css" rel="stylesheet">
-        <link  rel="icon" href="img/logo.ico" type="img/ico" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Page Title - SB Admin</title>
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body> 
-        <nav class="navbar navbar-light justify-content-between" style="background-color:#e3f2fd;">
-        <div class="dropdown">
-                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Menú
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <a class="dropdown-item" href="./index.php">Tablero de comandos</a>
-                    <a class="dropdown-item" href="./php/nuevo_paciente.php">Nuevo paciente</a>
-                    <a class="dropdown-item" href="./php/listado_pacientes.php">Listado de pacientes</a>
-                    <a class="dropdown-item" href="./agregar_intervencion.php">Agregar intervención</a>
-                    <a class="dropdown-item" href="#">Reportes</a>
-                </div>
+    <body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Ingreso al sistema<br>TeleSalud HDC</h3></div>
+                                    <div class="card-body">
+                                        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputEmailAddress">Usuario</label>
+                                                <input class="form-control py-4" id="inputEmailAddress" type="text" name="usuario" placeholder="Ingrese su usuario" required /></div>
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputPassword">Password</label>
+                                                <input class="form-control py-4" id="inputPassword" type="password" name="password" placeholder="Ingrese su contraseña" required /></div>
+                                            
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><button type="reset" class="btn btn-primary" >Cancelar</button>
+                                            <button type="submit" class="btn btn-primary" >Ingresar</button></div>
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div id="layoutAuthentication_footer">
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2019</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
         </div>
-            <a class="navbar-brand" href="index.php">
-                <img src="img/logo.png" width="300" height="50" class="d-inline-block align-top" alt="">              
-            </a>            
-            <div></div>   
-        </nav>
-
-        
-        <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12 mt-5 ml-5">
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Pacientes registrados</h5>
-                        <p class="card-text h2 text-center font-weight-normal"><?php echo $total_pacientes; ?></p>
-                    </div>                 
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 mt-5 ml-5">
-                <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Pacientes bajo seguimiento</h5>
-                        <p class="card-text h2 text-center font-weight-normal"><?php echo $total_bajo_seg; ?></p>
-                    </div>                 
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 mt-5 ml-5">
-                <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Pacientes con movilidad</h5>
-                        <p class="card-text h2 text-center font-weight-normal"><?php echo $total_movilidad; ?></p>
-                    </div>                 
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 mt-5 ml-5">
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Pacientes registrados</h5>
-                        <p class="card-text h2 text-center font-weight-normal"><?php echo $total_pacientes; ?></p>
-                    </div>                 
-                </div>
-            </div>  
-        </div>
-
-        
-       
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="./js/bootstrap.min.js"></script>
-        
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
     </body>
-    <footer class="font-small mt-5" style="background-color: #002752;position: fixed; bottom: 0px; width: 100%; height: 50px">
-        <div class="text-white text-center py-3">© 2020 - Área de Sistemas - HDC
-            <a class="text-info" href="#"></a>
-        </div>
-    </footer>
 </html>
