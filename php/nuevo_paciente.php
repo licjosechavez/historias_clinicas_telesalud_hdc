@@ -1,32 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Historia Clinica TeleSalud</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link  rel="icon"   href="../img/logo.ico" type="img/ico" />
-    </head>
-    <body> 
-        <nav class="navbar navbar-light justify-content-between" style="background-color:#e3f2fd;">
-        <div class="dropdown">
-                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Menú
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <a class="dropdown-item" href="../index.php">Tablero de comandos</a>
-                    <a class="dropdown-item" href="../php/nuevo_paciente.php">Nuevo paciente</a>
-                    <a class="dropdown-item" href="../php/listado_pacientes.php">Listado de pacientes</a>
-                    <a class="dropdown-item" href="./agregar_intervencion.php">Agregar intervención</a>
-                    <a class="dropdown-item" href="#">Reportes</a>
-                </div>
-            </div>
-            <a class="navbar-brand" href="index.php">
-                <img src="../img/logo.png" width="300" height="50" class="d-inline-block align-top" alt="">              
-            </a>            
-            <div></div>   
-        </nav>
+<?php
+    require "conexion.php";
+    
+    session_start();
+
+    if(!isset($_SESSION["id"])){
+      //header("Location: index.php"); 
+    }
+
+    $nombre_apellido = $_SESSION['nombre_apellido'];
+    $tipo_usuario = $_SESSION["tipo_usuario"];
+?>
+
+<?php include_once "header.php"; ?>
+
+<!-- Inicio contenido de las paginas -->
 
         <form id="form_e" action="nuevo_insert.php" method="POST">
         <div class="container mt-5 bg-light">
@@ -166,20 +153,12 @@
 </form>
 
 <div class="container bg-light mt-0">
-    <a href="../index.php"><button class="btn btn-dark my-2 mr-1">Regresar</button></a>
+    <a href="/ts_hclinicas/dashboard.php"><button class="btn btn-dark my-2 mr-1">Regresar</button></a>
 </div>
 
        
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="../js/bootstrap.min.js"></script>
-        <br><br><br><br><br><br><br>
-    </body>
-    <footer class="font-small mt-5" style="background-color: #002752;position: fixed; bottom: 0px; width: 100%; height: 50px">
-        <div class="text-white text-center py-3">© 2020 - Área de Sistemas - HDC
-            <a class="text-info" href="#"></a>
-        </div>
-    </footer>
-</html>
+<!-- Fin contenido de las paginas-->
+
+        
+<?php include_once "footer.php"; ?>
 

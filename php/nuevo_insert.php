@@ -1,5 +1,13 @@
 <?php
 require "conexion.php";
+    session_start();
+
+    if(!isset($_SESSION["id"])){
+      //header("Location: index.php"); 
+    }
+
+    $nombre_apellido = $_SESSION['nombre_apellido'];
+    $tipo_usuario = $_SESSION["tipo_usuario"];
 
         if (isset($_POST['enviar_form'])) {
         
@@ -41,13 +49,14 @@ require "conexion.php";
                 alert('PACIENTE INGRESADO EXITOSAMENTE');
                 
               </script>";
-             header('Location: ../index.php');
+             header('Location: /ts_hclinicas/php/listado_pacientes.php');
             
           } 
          else{
           echo "<script language='javascript'>
                 alert('error');
               </script>";
+              header('Location: /ts_hclinicas/php/listado_pacientes.php');
           
         }
 

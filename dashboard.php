@@ -30,15 +30,18 @@
 
 ?>
 
-<?php include_once "./vistas/header.php"; ?>
+<?php include_once "./php/header.php"; ?>
     
 <!-- Inicio contenido de las paginas -->
-    <<div class="container align-center">
+    <div class="container align-center">
+    <br>
+    <h1>Pacientes</h1>
     <div class="row">
+    
             <div class="col-md-3 col-sm-6 col-xs-12 mt-5 ml-5">
                 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Pacientes registrados</h5>
+                        <h5 class="card-title text-center">Registrados</h5>
                         <p class="card-text h2 text-center font-weight-normal"><?php echo $total_pacientes; ?></p>
                     </div>                 
                 </div>
@@ -46,7 +49,7 @@
             <div class="col-md-3 col-sm-6 col-xs-12 mt-5 ml-5">
                 <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Pacientes bajo seguimiento</h5>
+                        <h5 class="card-title text-center">Bajo seguimiento</h5>
                         <p class="card-text h2 text-center font-weight-normal"><?php echo $total_bajo_seg; ?></p>
                     </div>                 
                 </div>
@@ -54,7 +57,7 @@
             <div class="col-md-3 col-sm-6 col-xs-12 mt-5 ml-5">
                 <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Pacientes con movilidad</h5>
+                        <h5 class="card-title text-center">Con movilidad</h5>
                         <p class="card-text h2 text-center font-weight-normal"><?php echo $total_movilidad; ?></p>
                     </div>                 
                 </div>
@@ -62,17 +65,28 @@
             <div class="col-md-3 col-sm-6 col-xs-12 mt-5 ml-5">
                 <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Pacientes registrados</h5>
+                        <h5 class="card-title text-center">Registrados</h5>
                         <p class="card-text h2 text-center font-weight-normal"><?php echo $total_pacientes; ?></p>
                     </div>                 
                 </div>
             </div>  
+            <div class="col-md-3 col-sm-6 col-xs-12 mt-5 ml-5">
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Registrados</h5>
+                        <p class="card-text h2 text-center font-weight-normal"><?php echo $total_pacientes; ?></p>
+                    </div>                 
+                </div>
+            </div> 
+            <div class="col-md-3 col-sm-6 col-xs-12 mt-5 ml-5">
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Registrados</h5>
+                        <p class="card-text h2 text-center font-weight-normal"><?php echo $total_pacientes; ?></p>
+                    </div>                 
+                </div>
+            </div> 
         </div> 
     </div>
-    
-
-<!-- Fin contenido de las paginas-->
-
-        
-<?php include_once "./vistas/footer.php"; ?>
-</html>
+<!-- Fin contenido de las paginas-->     
+<?php include_once "./php/footer.php"; ?>
