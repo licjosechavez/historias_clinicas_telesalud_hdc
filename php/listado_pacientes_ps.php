@@ -16,6 +16,12 @@
     INNER JOIN int_cl_medica ON paciente.id_paciente = int_cl_medica.id_paciente
     INNER JOIN int_psicologica ON int_psicologica.id_int_cl_medica = int_cl_medica.id_int_cl_medica
     WHERE int_cl_medica.consignar_especialidad = 'PSICOLOGICA' AND int_psicologica.estado='NA'";
+    /*$sql="SELECT paciente.id_paciente, paciente.apellido, paciente.nombre, paciente.dni, int_cl_medica.fecha_intervencion_cl_medica, int_cl_medica.id_int_cl_medica, int_psicologica.estado, int_psicologica.id_int_psicologica
+    FROM paciente 
+    INNER JOIN int_cl_medica ON paciente.id_paciente = int_cl_medica.id_paciente
+    INNER JOIN int_psicologica ON int_psicologica.id_int_cl_medica = int_cl_medica.id_int_cl_medica
+    WHERE int_cl_medica.consignar_especialidad = 'PSICOLOGICA' AND int_psicologica.estado='NA'";*/ 
+    //echo $sql;
 
     $resultado = mysqli_query($conn, $sql);
 

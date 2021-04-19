@@ -31,7 +31,7 @@ require "conexion.php";
         $id_paciente = $_POST["id_paciente"];
         $id_int_cl_medica = $_POST['id_int_cl_medica'];
                 
-          $query2 = "INSERT INTO int_cl_medica (id_paciente, estado_clinico_actual, medicacion, estudios_realizados, consulta_medica_breve, requiere_interconsulta, consignar_especialidad, requiere_laboratorio, consignar_laboratorio, requiere_consulta_posterior, seguimiento) VALUES ( '$id_paciente','$iestado_clinico_actual', '$imedicacion', '$iestudios_realizados', '$iconsulta_medica_breve', '$irequiere_interconsulta', '$iconsignar_especialidad', '$irequiere_laboratorio', '$iconsignar_laboratorio', '$irequiere_consulta_posterior', '$iseguimiento')";
+          $query2 = "INSERT INTO int_cl_medica (id_paciente, estado_clinico_actual, medicacion_cl_medica, estudios_realizados, consulta_medica_breve, requiere_interconsulta, consignar_especialidad, requiere_laboratorio, consignar_laboratorio, requiere_consulta_posterior, seguimiento) VALUES ( '$id_paciente','$iestado_clinico_actual', '$imedicacion', '$iestudios_realizados', '$iconsulta_medica_breve', '$irequiere_interconsulta', '$iconsignar_especialidad', '$irequiere_laboratorio', '$iconsignar_laboratorio', '$irequiere_consulta_posterior', '$iseguimiento')";
           //echo $query2;
           $result2 = mysqli_query($conn, $query2);
         }

@@ -190,7 +190,7 @@
 </form>
 
 <div class="container bg-light mt-0">
-    <a href="../index.php"><button class="btn btn-dark my-2 mr-1">Regresar</button></a>
+    <a href="listado_pacientes_ps.php"><button class="btn btn-dark my-2 mr-1">Regresar</button></a>
 </div>
 
        
