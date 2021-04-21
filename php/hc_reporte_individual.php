@@ -58,20 +58,58 @@
         $imedicacion_cl_medica = $row["medicacion_cl_medica"];
         $iestudios_realizados = $row["estudios_realizados"];
         $iconsulta_medica_breve = $row["consulta_medica_breve"];
-        $irequiere_interconsulta = $row["requiere_interconsulta"];
+        $irequiere_interconsulta_cl = $row["requiere_interconsulta"];
 
-        $iconsignar_especialidad="";
-        if (isset($_POST["especialidad"])){
-          $iconsignar_especialidad = implode(',', $_POST["especialidad"] );
-        }
+        $iconsignar_especialidad_cl=$row["consignar_especialidad"];
+        
+        
+        /*if (isset($row["especialidad"])){
+          $iconsignar_especialidad = explode(',', $row["especialidad"] );
+        }*/
+
+        
+                
+                /*if(!empty($row['especialidad'])){
+                // Ciclo para mostrar las casillas checked checkbox.
+                foreach($row['especialidad'] as $selected){
+                echo $selected."</br>";// Imprime resultados
+                }
+                }*/
+                
+                
         
         $irequiere_laboratorio = $row["requiere_laboratorio"];
         $iconsignar_laboratorio = $row["consignar_laboratorio"];
         $irequiere_consulta_posterior = $row["requiere_consulta_posterior"];  
         $iseguimiento = $row["seguimiento"];
         $ifecha_int_cl_medica = $row["fecha_intervencion_cl_medica"];
+        //echo $ifecha_int_cl_medica;
         $id_paciente = $row["id_paciente"];
         $id_int_cl_medica = $row['id_int_cl_medica'];
+
+        // datos de int psicologica
+        //Listado de Parametros
+        $id_insertado = mysqli_insert_id($conn);
+        //echo $id_insertado;
+        $isintomatologia_ps = $row["sintomatologia_ps"];
+        //$imedicacion = $row["inputMedicacion"];
+        $irequiere_interconsulta_ps = $row["requiere_interconsulta_ps"];
+        $iconsignar_especialidad = $row["consignar_especialidad_ps"];
+        $ifecha_intervencion = $row["fecha_int_ps"];
+        
+        
+        $imodalidad=$row["modalidad_ps"];;
+        /*if (isset($row["modalidad_ps"])){
+          $imodalidad = implode(',', $row["modalidad_ps"] );
+        };*/
+
+
+
+        $irequiere_articulacion = $row["requiere_art_institucion"];
+        $iconsignar_institucion = $row["consignar_institucion"];
+        $igrupo_familiar = $row["grupo_familiar"];
+        $ibreve_reseña_intervencion = $row["breve_resenia_int_ps"];
+        $iseguimiento_ps = $row["seguimiento_ps"];  
         
         }
       }
@@ -260,6 +298,7 @@
         </div>
         <hr><br>
             <h2 align='left'>Intervención Clínica Médica</h2><br>
+            
             <div class="form-row">
             <div class="form-group col-md-6">
             <label for="inputEstadoClinicoActual">Estado clínico actual (síntomas presentes)</label>
@@ -279,40 +318,38 @@
             </div>
             <div class="form-group col-md-6">
             <label for="inputRequiereInterconsulta">¿Requiere interconsulta?</label><br>
-                <?php $siIsChecked = $irequiere_interconsulta == 'Si' ? 'checked' : ''; ?>
+                <?php 
+                $siIsChecked = $irequiere_interconsulta_cl == 'Si' ? 'checked' : ''; ?>
                 <input type="radio" name="inputRequiereInterconsulta" value="Si" <?php echo $siIsChecked ?> disabled> Si
-                <?php $noIsChecked = $irequiere_interconsulta == 'No' ? 'checked' : ''; ?>  
-                <input type="radio" name="inputRequiereInterconsulta" value="No" <?php echo $noIsChecked ?> disabled>  No <br>
+
+                <?php 
+                $noIsChecked = $irequiere_interconsulta_cl == 'No' ? 'checked' : ''; ?>  
+                <input type="radio" name="inputRequiereInterconsulta" value="No" <?php echo $noIsChecked ?> disabled>  No 
             </div>
             <div class="form-group col-md-6">
             <label for="inputConsignarEspecialidad">Consignar especialidad</label><br> 
-                <label><input type="checkbox" name="especialidad[]" value="PSICOLOGICA"> PSICOLOGICA</label>
-                <label><input type="checkbox" name="especialidad[]" value="CARDIOLOGICA" disabled> CARDIOLOGICA </label>
-                <label><input type="checkbox" id="todos" value="Todos" disabled> Todos</label>
+                <!-- <label><input type="checkbox" name="especialidad[]" value="PSICOLOGICA"> Psicológica</label>
+                <label><input type="checkbox" name="especialidad[]" value="CARDIOLOGICA" disabled> Cardiológica </label> -->
+                <?php
+                echo $iconsignar_especialidad_cl
+                ?>
                 
-                <script>
-                var checkbox = document.getElementById('todos');
-                checkbox.addEventListener('change', function() {
-                    if(this.checked) {
-                        seleccionar_todo();
-                    }
-                    else{
-                        deseleccionar_todo()
+                <?php
+                /*$siIsChecked = $iconsignar_especialidad_cl == 'PSICOLOGICA' ? 'checked' : ''; ?>
+                <input type="checkbox" name="especialidad" value="PSICOLOGICA" <?php echo $siIsChecked ?> disabled> PSICOLOGICA
 
-                    }
-                });
+                <?php
+                $siIsChecked = $iconsignar_especialidad_cl == 'CARDIOLOGICA' ? 'checked' : ''; ?>
+                <input type="checkbox" name="especialidad" value="Si" <?php echo $siIsChecked ?> disabled> CARDIOLOGICA
 
-                function seleccionar_todo(){
-                        for (i=0;i<document.nuevo_cl_medica.elements.length;i++)
-                            if(document.nuevo_cl_medica.elements[i].type == "checkbox")
-                                document.nuevo_cl_medica.elements[i].checked=1
-                    }
-                function deseleccionar_todo(){
-                        for (i=0;i<document.nuevo_cl_medica.elements.length;i++)
-                            if(document.nuevo_cl_medica.elements[i].type == "checkbox")
-                                document.nuevo_cl_medica.elements[i].checked=0
-                    }
-                </script>
+                
+                
+                /*$array_explode = explode(",", $iconsignar_especialidad_cl);
+                print_r($array_explode);
+                var_dump($array_explode);*/
+                ?>
+                
+                
 
             </div>
             <div class="form-group col-md-6">
@@ -333,90 +370,95 @@
                 <?php $noIsChecked = $irequiere_consulta_posterior == 'No' ? 'checked' : ''; ?>  
                 <input type="radio" name="inputRequiereConsultaPosterior" value="No" <?php echo $noIsChecked ?> disabled>  No <br>
             </div>
+            <div class="form-group col-md-6">
+            
+                <label for="inputFechaIntervencion">Fecha de la intervención</label>
+                <input type="text" class="form-control" name="inputFechaIntervencion" value="<?php echo $ifecha_int_cl_medica;?>" disabled>  
+            </div>
+            </div>
             <div class="form-group col-md-12">
                 <label for="inputSeguimiento">Seguimiento</label>
                 <textarea class="form-control" name="inputSeguimiento" rows="8" cols="50" disabled><?php echo $iseguimiento; ?></textarea>
             </div>   
-        <hr><br><br><br>
+        <hr><br>
         <h2 align='left'><br>Intervención Psicológica</h2><br>
             <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputSintomatologia">¿Presenta sintomatología?</label><br> 
-                <input type="radio" name="inputSintomatologia" value="Si">  Si  <input type="radio" name="inputSintomatologia" value="No">  No
+                <?php $siIsChecked = $isintomatologia_ps == 'Si' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputSintomatologia" value="Si" <?php echo $siIsChecked ?> disabled>  Si 
+                <?php $noIsChecked = $isintomatologia_ps == 'No' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputSintomatologia" value="No" <?php echo $noIsChecked ?> disabled>  No
             </div>
             <div class="form-group col-md-6">
-            <label for="inputMedicacion">Medicación</label>
-                <textarea class="form-control" name="inputMedicacion" rows="3" cols="50" placeholder="Medicación"></textarea>
+                <label for="inputFechaIntervencion">Fecha de la intervención</label>
+                <input type="text" class="form-control" name="inputFechaIntervencion" value="<?php echo $ifecha_intervencion;?>" disabled>  
             </div>
+            <!-- <div class="form-group col-md-6">
+            <label for="inputMedicacion">Medicación</label>
+                <textarea class="form-control" name="inputMedicacion" rows="3" cols="50" disabled><?php echo $isintomatologia;?></textarea>
+            </div> -->
             <div class="form-group col-md-6">
                 <label for="inputRequiereInterconsulta">¿Requiere interconsulta?</label><br> 
-                <input type="radio" name="inputRequiereInterconsulta" value="Si">  Si  <input type="radio" name="inputRequiereInterconsulta" value="No">  No
+
+                <?php $siIsChecked = $irequiere_interconsulta_ps == 'Si' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputRequiereInterconsulta_ps" value="Si" <?php echo $siIsChecked ?> disabled>  Si 
+                <?php $noIsChecked = $irequiere_interconsulta_ps == 'No' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputRequiereInterconsulta_ps" value="No" <?php echo $noIsChecked ?> disabled>  No
+
             </div>
             <div class="form-group col-md-6">
                 <label for="inputConsignarEspecialidad">Consignar Especialidad</label>
-                <textarea class="form-control" name="inputConsignarEspecialidad" rows="3" cols="50" placeholder="Consignar Especialidad"></textarea>
+                <textarea class="form-control" name="inputConsignarEspecialidad" rows="3" cols="50" disabled><?php echo $iconsignar_especialidad; ?></textarea>
             </div>
+            
             <div class="form-group col-md-6">
-                <label for="inputFechaIntervencion">Fecha de intervención</label>
-                <input type="date" class="form-control" name="inputFechaIntervencion" value="2020-03-01">
-            </div>
-            <div class="form-group col-md-6">
-            <label for="inputModalidad">Modalidad de la intervención</label><br> 
+            <label for="inputModalidad">Modalidad de la intervención</label><br>
+
+                <?php
+                echo $imodalidad;
+                ?>
+
+                <!--
                 <label><input type="checkbox" name="modalidad[]" value="LLAMADO TELEFONICO"> LLAMADO TELEFONICO</label>
                 <label><input type="checkbox" name="modalidad[]" value="VIDEOLLAMADA"> VIDEOLLAMADA</label>
                 <label><input type="checkbox" name="modalidad[]" value="PRESENCIAL"> PRESENCIAL</label>
                 <label><input type="checkbox" id="todos" value="Todos"> Todos</label>
+                -->
                 
-                <script>
-                var checkbox = document.getElementById('todos');
-                checkbox.addEventListener('change', function() {
-                    if(this.checked) {
-                        seleccionar_todo();
-                    }
-                    else{
-                        deseleccionar_todo()
-
-                    }
-                });
-                function seleccionar_todo(){
-                        for (i=0;i<document.nuevo_cl_medica.elements.length;i++)
-                            if(document.nuevo_cl_medica.elements[i].type == "checkbox")
-                                document.nuevo_cl_medica.elements[i].checked=1
-                    }
-                function deseleccionar_todo(){
-                        for (i=0;i<document.nuevo_cl_medica.elements.length;i++)
-                            if(document.nuevo_cl_medica.elements[i].type == "checkbox")
-                                document.nuevo_cl_medica.elements[i].checked=0
-                    }
-                </script>
             </div>
 
             <div class="form-group col-md-6">
                 <label for="inputRequiereArticulacion">¿Requiere articulación con otras instituciones de asistencia en Salud Mental?</label><br> 
-                <input type="radio" name="inputRequiereArticulacion" value="Si">  Si  <input type="radio" name="inputRequiereArticulacion" value="No">  No
+
+                <?php $siIsChecked = $irequiere_articulacion == 'Si' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputRequiereArticulacion" value="Si" <?php echo $siIsChecked ?> disabled>  Si 
+                <?php $noIsChecked = $irequiere_articulacion == 'No' ? 'checked' : ''; ?> 
+                <input type="radio" name="inputRequiereArticulacion" value="No" <?php echo $noIsChecked ?> disabled>  No
+
             </div>
             <div class="form-group col-md-6">
                 <label for="inputConsignarInstitucion">Consignar Institución</label>
-                <textarea class="form-control" name="inputConsignarInstitucion" rows="3" cols="50" placeholder="Consignar Institución"></textarea>
+                <textarea class="form-control" name="inputConsignarInstitucion" rows="3" cols="50" disabled><?php echo $iconsignar_institucion; ?></textarea>
             </div>
             <div class="form-group col-md-12">
             <label for="inputGrupoFamiliar">Grupo familiar</label>
-                <textarea class="form-control" name="inputGrupoFamiliar" rows="8" cols="50" placeholder="Grupo familiar"></textarea>
+                <textarea class="form-control" name="inputGrupoFamiliar" rows="8" cols="50" disabled><?php echo $igrupo_familiar; ?></textarea>
             </div>
             <div class="form-group col-md-12">
                 <label for="inputBreveReseniaIntervencion">Breve reseña de la intervención</label>
-                <textarea class="form-control" name="inputBreveReseniaIntervencion" rows="8" cols="50" placeholder="Breve reseña de la intervención"></textarea>
+                <textarea class="form-control" name="inputBreveReseniaIntervencion" rows="8" cols="50" disabled><?php echo $ibreve_reseña_intervencion; ?></textarea>
             </div>
             <div class="form-group col-md-12">
                 <label for="inputSeguimientoPsicologia">Seguimiento / Acompañamiento</label>
-                <textarea class="form-control" name="inputSeguimientoPsicologia" rows="8" cols="50" placeholder="Seguimiento"></textarea>
+                <textarea class="form-control" name="inputSeguimientoPsicologia" rows="8" cols="50" disabled><?php echo $iseguimiento_ps; ?></textarea>
             </div>
             <br>
-            <input id="form" type="submit" class="btn btn-success float-right mx-auto" value="Imprimir" name="enviar_form">
+            
     </div>
 </form>
 
-
+</div>
 </div>
 
 <!-- Fin contenido de las paginas-->
