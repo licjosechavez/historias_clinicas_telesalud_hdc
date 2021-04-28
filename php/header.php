@@ -9,6 +9,7 @@
 
     $nombre_apellido = $_SESSION['nombre_apellido'];
       $tipo_usuario = $_SESSION["tipo_usuario"];
+      $usuario = $_SESSION["usuario"];
     
 
 ?>
@@ -44,18 +45,26 @@
                     Menú
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <a class="dropdown-item" href="/ts_hclinicas/dashboard.php">Tablero de comandos</a>
+                    <a class="dropdown-item" href="/ts_hclinicas/dashboard.php"><i class="fas fa-tachometer-alt"></i>   Tablero de comandos</a>
+                    
                     <?php if($tipo_usuario == 1){ ?>
-                    <a class="dropdown-item" href="/ts_hclinicas/php/listado_pacientes.php">Listado de pacientes</a>
-                    <a class="dropdown-item" href="/ts_hclinicas/php/nuevo_paciente.php">Nuevo paciente</a>
+
+                    <a class="dropdown-item" href="/ts_hclinicas/php/listado_pacientes.php"><i class="fas fa-list-alt"></i> Listado de pacientes</a>
+                    <a class="dropdown-item" href="/ts_hclinicas/php/nuevo_paciente.php"><i class="fas fa-user-plus"></i> Nuevo paciente</a>
                     <?php } ?>
                     
-                    <?php if($tipo_usuario == 2 ){ ?>
-                    <a class="dropdown-item" href="/ts_hclinicas/php/listado_pacientes_ps.php">Listado de pacientes | Psicología</a>
+                    <?php if($tipo_usuario == 2 AND $usuario=="psicologia" ){ ?>
+
+                    <a class="dropdown-item" href="/ts_hclinicas/php/listado_pacientes_ps.php"><i class="fas fa-couch"></i> Listado de pacientes | Psicología</a>
                     <?php } ?>
-                    <a class="dropdown-item" href="/ts_hclinicas/php/historias_clinicas.php">Historias Clínicas</a>
+                    <?php if($tipo_usuario == 2 AND $usuario=="cardiologia" ){ ?>
+
+                    <a class="dropdown-item" href="/ts_hclinicas/php/listado_pacientes_car.php"><i class="fas fa-couch"></i> Listado de pacientes | Cardiología</a>
+                    <?php } ?>
                     
-                    <a class="dropdown-item" href="/ts_hclinicas/php/reportes.php">Reportes</a>
+                    <a class="dropdown-item" href="/ts_hclinicas/php/historias_clinicas.php"><i class="fas fa-file-medical-alt">  </i> Historias Clínicas</a>
+                    
+                    <a class="dropdown-item" href="/ts_hclinicas/php/reportes.php"><i class="fas fa-file-pdf"></i> Reportes</a>
                     
                     
                     

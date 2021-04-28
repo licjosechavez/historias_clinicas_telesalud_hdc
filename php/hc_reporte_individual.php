@@ -139,7 +139,8 @@
 
 <!-- Inicio contenido de las paginas -->
 <div class="container mt-5 bg-light">
-<form id="form_e" action="#" method="POST">
+<form id="form_e" method="post" action="int_individual_pdf.php?<?php echo "valorI1=$valorI1&valorI2=$valorI2&valorI3=$valorI3&valorI4=$valorI4&valorI5=$valorI5"; ?>">
+
         <div class="container mt-5 bg-light">
         <br>
         <h2 align='left'>Datos Personales</h2><br>
@@ -454,7 +455,7 @@
                 <textarea class="form-control" name="inputSeguimientoPsicologia" rows="8" cols="50" disabled><?php echo $iseguimiento_ps; ?></textarea>
             </div>
             <br>
-            
+            <?php echo "<a href='../reportes/int_individual_pdf.php?id_paciente=$id_paciente&id_int_cl_medica=$id_int_cl_medica' role='button' type='submit'>ENVIAR</a>";?>    
     </div>
 </form>
 

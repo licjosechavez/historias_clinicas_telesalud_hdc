@@ -1,0 +1,6 @@
+{
+    "require": {
+        "laravelcollective/html": "^6.2",
+        "mpdf/mpdf": "^8.0"
+    }
+}

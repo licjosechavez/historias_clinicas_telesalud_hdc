@@ -45,13 +45,11 @@
         >
           <thead>
             <tr>
-              
+              <th>Fecha Int. Cl. Médica</th>
               <th>DNI</th>
               <th>Apellido</th>
               <th>Nombres</th>
-              <th>Tel. Celular</th>
-              <th>Email</th>
-              <th>Dirección</th>
+              
               <th>Acciones</th>
               
             </tr>
@@ -60,13 +58,11 @@
           <?php
            while($row = $resultado->fetch_assoc()){?>
               <tr> 
-                
+              <td><?php echo $row["fecha_intervencion_cl_medica"]; ?></td>
                 <td><?php echo $row["dni"]; ?></td>
                 <td><?php echo $row["apellido"]; ?></td>
                 <td><?php echo $row["nombre"]; ?></td>
-                <td><?php echo $row["tel_cel"]; ?></td>
-                <td><?php echo $row["email"]; ?></td>
-                <td><?php echo $row["direccion"]; ?></td>
+                
                 <td><a href="hc_reporte_individual.php?id_paciente=<?php echo $row['id_paciente']?>&id_int_cl_medica=<?php echo $row['id_int_cl_medica']?>" class="btn btn-info btn-sm" title="Ver Historia Clínica"><i class="fas fa-file-medical"></i> </a>
                 <!--<td><a href="hc_reporte.php?id_paciente=<?php echo $row['id_paciente']?>&id_int_cl_medica=<?php echo $id_int_cl_medica;?>" class="btn btn-info btn-sm" title="Ver Historia Clínica"><i class="fas fa-file-medical"></i> </a> -->
                 <a href="hc_reporte_pdf.php?id_paciente_edit=<?php echo $row['id_paciente']?>" class="btn btn-secondary btn-sm" title="Imprimir"><i class="fas fa-print"></i> </a> 

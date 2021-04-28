@@ -26,6 +26,7 @@
                 $_SESSION['nombre_apellido'] = $row['nombre_apellido'];
                 $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
                 $_SESSION['id_usuario'] = $row['id_usuario'];
+                $_SESSION['usuario'] = $row['usuario'];
 
                 header("Location: dashboard.php");
 
