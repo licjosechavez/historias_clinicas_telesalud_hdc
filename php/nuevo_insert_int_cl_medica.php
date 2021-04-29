@@ -32,7 +32,7 @@ require "conexion.php";
         $id_int_cl_medica = $_POST['id_int_cl_medica'];
                 
           $query2 = "INSERT INTO int_cl_medica (id_paciente, estado_clinico_actual, medicacion_cl_medica, estudios_realizados, consulta_medica_breve, requiere_interconsulta, consignar_especialidad, requiere_laboratorio, consignar_laboratorio, requiere_consulta_posterior, seguimiento) VALUES ( '$id_paciente','$iestado_clinico_actual', '$imedicacion', '$iestudios_realizados', '$iconsulta_medica_breve', '$irequiere_interconsulta', '$iconsignar_especialidad', '$irequiere_laboratorio', '$iconsignar_laboratorio', '$irequiere_consulta_posterior', '$iseguimiento')";
-          //echo $query2;
+          echo $query2;
           $result2 = mysqli_query($conn, $query2);
         }
 
@@ -57,37 +57,45 @@ require "conexion.php";
               }*/
               
               if($pos === 0 && $pos2 === 0) {
+                //echo "eligio las 2";
                 /*echo "<script language='javascript'>
                 alert('INT. CL. MEDICA INGRESADA EXITOSAMENTE');     
                 </script>";*/
-                  // INSERT EN LA TABLO PS
-                  $query5 = "INSERT INTO int_psicologica (id_int_cl_medica) VALUES ($id_int_cl_medica);";
-                  //$result5 = mysqli_query($conn, $query5);
-                  //echo $query5;
-                  
 
-                  // INSERT EN LA TABLA CARDIO
-                  /*$query4 = "INSERT INTO int_cardiologica (id_int_cl_medica) VALUES ($id_int_cl_medica);";
-                  $result4 = mysqli_query($conn, $query4);*/
-                  
-                } else if($pos === 0) {
-                  echo "La cadena '$psicologica' fue encontrada en la cadena '$iconsignar_especialidad'";
-                  echo " y existe en la posición $pos";
-                  $query3 = "INSERT INTO int_psicologica (id_int_cl_medica) VALUES ($id_int_cl_medica);";
-                  echo $query3;
-                  $result3 = mysqli_query($conn, $query3);
-                  header('Location: ./listado_pacientes.php');
+                // INSERT EN LA TABLO PS
+                $query3 = "INSERT INTO int_psicologica (id_int_cl_medica) VALUES ($id_int_cl_medica);";
+                $result3 = mysqli_query($conn, $query3);
+                //header('Location: ./listado_pacientes.php');
+                //echo $query5;
+                if($result3 == 1){
+                        // INSERT EN LA TABLA CARDIO
+                    $query4 = "INSERT INTO int_cardiologica (id_int_cl_medica) VALUES ($id_int_cl_medica)";
+                    $result4 = mysqli_query($conn, $query4);
+                    //header('Location: ./listado_pacientes.php');
+                }
+                die();
+                } 
+                
+                if($pos === 0) {
+                  /*echo "La cadena '$psicologica' fue encontrada en la cadena '$iconsignar_especialidad'";
+                  echo " y existe en la posición $pos";*/
+                  $query5 = "INSERT INTO int_psicologica (id_int_cl_medica) VALUES ($id_int_cl_medica);";
+                  //echo $query5;
+                  $result5 = mysqli_query($conn, $query5);
+                  //header('Location: ./listado_pacientes.php');
                   }  
-                 else if($pos2 === 0) {
+
+                 if($pos2 === 0) {
                     /*echo "La cadena '$cardiologica' fue encontrada en la cadena '$iconsignar_especialidad'";*/
                     //echo " y existe en la posición $pos";
-                    /*$query4 = "INSERT INTO int_cardiologica (id_int_cl_medica) VALUES ($id_int_cl_medica);";
-                    $result4 = mysqli_query($conn, $query4);*/
-                    //echo "agregar tab cardio";
+                    $query6 = "INSERT INTO int_cardiologica (id_int_cl_medica) VALUES ($id_int_cl_medica)";
+                    $result6 = mysqli_query($conn, $query6);
+                    //header('Location: ./listado_pacientes.php');
+                    //echo $query6;
+                    //header('Location: ./listado_pacientes.php');
+                    
                     }
-                else {
-                      header('Location: ./listado_pacientes.php');
-                    }
+               
         }
         else{
               echo "<script language='javascript'>

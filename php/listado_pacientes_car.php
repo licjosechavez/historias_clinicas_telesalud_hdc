@@ -11,11 +11,11 @@
 
 
     
-    $sql="SELECT paciente.id_paciente, paciente.apellido, paciente.nombre, paciente.dni, int_cl_medica.fecha_intervencion_cl_medica, int_cl_medica.id_int_cl_medica, int_psicologica.estado, int_psicologica.id_int_psicologica
+    $sql="SELECT paciente.id_paciente, paciente.apellido, paciente.nombre, paciente.dni, int_cl_medica.fecha_intervencion_cl_medica, int_cl_medica.id_int_cl_medica, int_cardiologica.estado_car, int_cardiologica.id_int_cardiologica
     FROM paciente 
     INNER JOIN int_cl_medica ON paciente.id_paciente = int_cl_medica.id_paciente
-    INNER JOIN int_psicologica ON int_psicologica.id_int_cl_medica = int_cl_medica.id_int_cl_medica
-    WHERE int_cl_medica.consignar_especialidad LIKE '%PSI%' AND int_psicologica.estado='NA'";
+    INNER JOIN int_cardiologica ON int_cardiologica.id_int_cl_medica = int_cl_medica.id_int_cl_medica
+    WHERE int_cl_medica.consignar_especialidad LIKE '%CAR%' AND int_cardiologica.estado_car='NA'";
     /*$sql="SELECT paciente.id_paciente, paciente.apellido, paciente.nombre, paciente.dni, int_cl_medica.fecha_intervencion_cl_medica, int_cl_medica.id_int_cl_medica, int_psicologica.estado, int_psicologica.id_int_psicologica
     FROM paciente 
     INNER JOIN int_cl_medica ON paciente.id_paciente = int_cl_medica.id_paciente
@@ -38,7 +38,7 @@
 
 <!-- Inicio contenido de las paginas -->
         <div class="container mt-5 bg-light">
-        <h2 align='left'>Listado de pacientes | Psicología</h2><br>
+        <h2 align='left'>Listado de pacientes | Cardiología</h2><br>
       
       <div class="col-lg-12">
       <div class="table-responsive">
@@ -67,7 +67,7 @@
                 <td><?php echo $row["nombre"]; ?></td>
 
                 <td>
-                <a href="nuevo_int_psicologica.php?id_paciente=<?php echo $row['id_paciente']?>&id_int_cl_medica=<?php echo $row["id_int_cl_medica"];?>" class="btn btn-info btn-sm" title="Agregar Int. Psicológica"><i class="fas fa-couch"></i> </a>
+                <a href="nuevo_int_cardiologica.php?id_paciente=<?php echo $row['id_paciente']?>&id_int_cl_medica=<?php echo $row["id_int_cl_medica"];?>" class="btn btn-info btn-sm" title="Agregar Int. Cardiológica"><i class="fas fa-couch"></i> </a>
                 <!-- 
                   <a href="nuevo_int_cl_medica.php?id_paciente=<?php echo $row['id_paciente']?>&id_int_cl_medica=<?php echo $id_int_cl_medica;?>" class="btn btn-info btn-sm" title="Agregar Int. Cl. Médica"><i class="far fa-notes-medical"></i> </a>
                   <a href="editar_paciente.php?id_paciente_edit=<?php echo $row['id_paciente']?>" class="btn btn-secondary btn-sm" title="Editar paciente"><i class="fas fa-user-edit"></i> </a> 

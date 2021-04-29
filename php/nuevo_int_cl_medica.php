@@ -135,8 +135,8 @@ if(isset($_GET['id_paciente'])) {
             <div class="form-group col-md-6">
             <label for="inputConsignarEspecialidad">Consignar especialidad</label><br> 
                 <label><input type="checkbox" name="especialidad[]" value="PSICOLOGICA"> PSICOLOGICA</label>
-                <label><input type="checkbox" name="especialidad[]" value="CARDIOLOGICA" disabled> CARDIOLOGICA </label>
-                <label><input type="checkbox" id="todos" value="Todos" disabled> Todos</label>
+                <label><input type="checkbox" name="especialidad[]" value="CARDIOLOGICA"> CARDIOLOGICA </label>
+                <label><input type="checkbox" id="todos" value="Todos"> Todos</label>
                 
                 <script>
                 var checkbox = document.getElementById('todos');

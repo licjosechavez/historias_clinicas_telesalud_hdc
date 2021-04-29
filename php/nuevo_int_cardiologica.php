@@ -70,10 +70,10 @@
 
 <!-- Inicio contenido de las paginas -->
 
-        <form id="form_e" action="nuevo_insert_int_psicologica.php" method="POST" name="nuevo_cl_medica">
+        <form id="form_e" action="nuevo_insert_int_cardiologica.php" method="POST" name="nuevo_cl_medica">
         <div class="container mt-5 bg-light">
         <br>
-        <h2 align='left'>Intervención Psicológica</h2><br>
+        <h2 align='left'>Intervención Cardiológica</h2><br>
         <h2 align='left'>Datos Personales</h2><br>
         <div class="form-row">
             
@@ -107,76 +107,42 @@
             <h2 align='left'>Datos de la Intervención</h2><br>
             <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputSintomatologia">¿Presenta sintomatología?</label><br> 
-                <input type="radio" name="inputSintomatologia" value="Si">  Si  <input type="radio" name="inputSintomatologia" value="No">  No
-            </div>
-            <div class="form-group col-md-6">
-            <label for="inputMedicacion">Medicación</label>
-                <textarea class="form-control" name="inputMedicacion" rows="3" cols="50" placeholder="Medicación"></textarea>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputRequiereInterconsulta">¿Requiere interconsulta?</label><br> 
-                <input type="radio" name="inputRequiereInterconsulta" value="Si">  Si  <input type="radio" name="inputRequiereInterconsulta" value="No">  No
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputConsignarEspecialidad">Consignar Especialidad</label>
-                <textarea class="form-control" name="inputConsignarEspecialidad" rows="3" cols="50" placeholder="Consignar Especialidad"></textarea>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputFechaIntervencion">Fecha de intervención</label>
-                <input type="date" class="form-control" name="inputFechaIntervencion" value="2020-03-01">
-            </div>
-            <div class="form-group col-md-6">
-            <label for="inputModalidad">Modalidad de la intervención</label><br> 
-                <label><input type="checkbox" name="modalidad[]" value="LLAMADO TELEFONICO"> LLAMADO TELEFONICO</label>
-                <label><input type="checkbox" name="modalidad[]" value="VIDEOLLAMADA"> VIDEOLLAMADA</label>
-                <label><input type="checkbox" name="modalidad[]" value="PRESENCIAL"> PRESENCIAL</label>
-                <label><input type="checkbox" id="todos" value="Todos"> Todos</label>
+                <label for="inputMotivo_consulta_car">Motivo de la consulta</label> 
+                <textarea class="form-control" name="inputMotivo_consulta_car" rows="3" cols="50" placeholder="Motivo...."></textarea>
                 
-                <script>
-                var checkbox = document.getElementById('todos');
-                checkbox.addEventListener('change', function() {
-                    if(this.checked) {
-                        seleccionar_todo();
-                    }
-                    else{
-                        deseleccionar_todo()
-
-                    }
-                });
-                function seleccionar_todo(){
-                        for (i=0;i<document.nuevo_cl_medica.elements.length;i++)
-                            if(document.nuevo_cl_medica.elements[i].type == "checkbox")
-                                document.nuevo_cl_medica.elements[i].checked=1
-                    }
-                function deseleccionar_todo(){
-                        for (i=0;i<document.nuevo_cl_medica.elements.length;i++)
-                            if(document.nuevo_cl_medica.elements[i].type == "checkbox")
-                                document.nuevo_cl_medica.elements[i].checked=0
-                    }
-                </script>
-            </div>
-
-            <div class="form-group col-md-6">
-                <label for="inputRequiereArticulacion">¿Requiere articulación con otras instituciones de asistencia en Salud Mental?</label><br> 
-                <input type="radio" name="inputRequiereArticulacion" value="Si">  Si  <input type="radio" name="inputRequiereArticulacion" value="No">  No
             </div>
             <div class="form-group col-md-6">
-                <label for="inputConsignarInstitucion">Consignar Institución</label>
-                <textarea class="form-control" name="inputConsignarInstitucion" rows="3" cols="50" placeholder="Consignar Institución"></textarea>
+            <label for="inputApp_car">Antecedentes Personales Patológicos</label>
+                <textarea class="form-control" name="inputApp_car" rows="3" cols="50" placeholder="APP..."></textarea>
             </div>
-            <div class="form-group col-md-12">
-            <label for="inputGrupoFamiliar">Grupo familiar</label>
-                <textarea class="form-control" name="inputGrupoFamiliar" rows="8" cols="50" placeholder="Grupo familiar"></textarea>
+            <div class="form-group col-md-6">
+                <label for="inputBajo_control_medico_car">¿Está bajo control médico?</label><br> 
+                <input type="radio" name="inputBajo_control_medico_car" value="Si">  Si  <input type="radio" name="inputbajo_control_medico_car" value="No">  No
             </div>
-            <div class="form-group col-md-12">
-                <label for="inputBreveReseniaIntervencion">Breve reseña de la intervención</label>
-                <textarea class="form-control" name="inputBreveReseniaIntervencion" rows="8" cols="50" placeholder="Breve reseña de la intervención"></textarea>
+            <div class="form-group col-md-6">
+                <label for="inputMedico_cabecera_car">Médico de cabecera</label>
+                <textarea class="form-control" name="inputMedico_cabecera_car" rows="3" cols="50" placeholder="Médico de cabecera"></textarea>
             </div>
-            <div class="form-group col-md-12">
-                <label for="inputSeguimientoPsicologia">Seguimiento / Acompañamiento</label>
-                <textarea class="form-control" name="inputSeguimientoPsicologia" rows="8" cols="50" placeholder="Seguimiento"></textarea>
+            <div class="form-group col-md-6">
+                <label for="inputEstudios_complementarios">Estudios complementarios</label><br> 
+                <input type="radio" name="inputEstudios_complementarios" value="Si">  Si  <input type="radio" name="inputEstudios_complementarios" value="No">  No
             </div>
+            <div class="form-group col-md-6">
+                <label for="inputConsignar_estudios_car">Consignar estudios complementarios</label>
+                <textarea class="form-control" name="inputConsignar_estudios_car" rows="3" cols="50" placeholder="Consignar estudios complementarios..."></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputFecha_int_car">Fecha de intervención</label>
+                <input type="date" class="form-control" name="inputFecha_int_car" value="2020-03-01">
+            </div>
+           
+
+            
+            <div class="form-group col-md-6">
+                <label for="inputConducta_seguir">Conducta a seguir</label>
+                <textarea class="form-control" name="inputConducta_seguir" rows="3" cols="50" placeholder="Conducta a seguir..."></textarea>
+            </div>
+
             <?php
              echo "<input type='hidden' name='id_paciente' value='$id_paciente'>";
              echo "<input type='hidden' name='id_int_cl_medica' value='$id_int_cl_medica'>";
@@ -185,12 +151,12 @@
 
         </div>
         <br>
-        <input id="form" type="submit" class="btn btn-primary float-right my-2" value="Dar de Alta" name="enviar_form">    
+        <input id="form" type="submit" class="btn btn-primary float-right my-2" value="Guardar" name="enviar_form">    
     </div>
 </form>
 
 <div class="container bg-light mt-0">
-    <a href="listado_pacientes_ps.php"><button class="btn btn-dark my-2 mr-1">Regresar</button></a>
+    <a href="listado_pacientes_car.php"><button class="btn btn-dark my-2 mr-1">Regresar</button></a>
 </div>
 
        

@@ -11,7 +11,7 @@
      
 
     <footer class="font-small mt-5" style="background-color: #002752; bottom: 50px; width: 100%; height: 55px">
-        <div class="text-white text-center py-3">© 2020 - Área de Sistemas - HDC
+        <div class="text-white text-center py-3">© 2021 - Área de Sistemas - HDC
             <a class="text-info" href="#"></a>
         </div>
     </footer>  
