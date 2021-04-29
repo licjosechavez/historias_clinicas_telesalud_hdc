@@ -385,11 +385,11 @@
         <h2 align='left'><br>Intervención Psicológica</h2><br>
             <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputSintomatologia">¿Presenta sintomatología?</label><br> 
+                <label for="inputSintomatologia_ps">¿Presenta sintomatología?</label><br> 
                 <?php $siIsChecked = $isintomatologia_ps == 'Si' ? 'checked' : ''; ?> 
-                <input type="radio" name="inputSintomatologia" value="Si" <?php echo $siIsChecked ?> disabled>  Si 
+                <input type="radio" name="inputSintomatologia_ps" value="Si" <?php echo $siIsChecked ?> disabled>  Si 
                 <?php $noIsChecked = $isintomatologia_ps == 'No' ? 'checked' : ''; ?> 
-                <input type="radio" name="inputSintomatologia" value="No" <?php echo $noIsChecked ?> disabled>  No
+                <input type="radio" name="inputSintomatologia_ps" value="No" <?php echo $noIsChecked ?> disabled>  No
             </div>
             <div class="form-group col-md-6">
                 <label for="inputFechaIntervencion">Fecha de la intervención</label>

@@ -103,7 +103,7 @@ $html = '
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>Example 1</title>
+    <title>Intervención TeleSalud - Individual</title>
     <!-- <link rel="stylesheet" href="style.css" media="all" /> -->
   </head>
   <body>
@@ -117,39 +117,131 @@ $html = '
         <div><a href="mailto:company@example.com">company@example.com</a></div>
       </div> -->
     <header class="clearfix">
-
       <h1>Intervención TeleSalud</h1>
-      
-
     </header>
     <main>
+    <h3>Datos Personales</h3><br>
       <table>
-        <thead>
-          <tr>
-            <th class="service">Apellido</th>
-            <th class="desc">Nombre</th>
-            <th>PRICE</th>
-            <th>QTY</th>
-            <th>TOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
           <tr>';
-          $html.='
-            <td class="service">'.$iapellido.'
-            </td>
-            <td class="desc">'.$inombre.'</td>
-            <td class="unit"></td>
-            <td class="qty"></td>
-            <td class="total"></td>
+          $html.=' 
+          <td class="desc">DNI: '.$idni.'</td>   
+          <td class="desc">Apellido y Nombre: '.$iapellido." $inombre" .'</td>
+          <tr>
+          <td class="desc">Edad: '.$iedad." años".'</td>
+          <td class="desc">Obra Social: '.$iobra_social.'</td>
+          </tr>
+          <tr>
+          <td class="desc">Ocupación: '.$iocupacion.'</td>
+          <td class="desc">Tel. celular: '.$itel_cel.'</td>
+          </tr>
+          <tr>
+          <td class="desc">Email: '.$iemail.'</td>
+          <td class="desc">Dirección: '.$idireccion.'</td>
+          </tr>
+          <tr>
+          <td class="desc">Disp. horaria: '.$idisp_horaria.'</td>
+          <td class="desc">Fecha de alta: '.$ifecha_alta.'</td>
+          </tr>
+          <tr>
+          <td class="desc">¿Estuvo internado?: '.$iestuvo_internado.'</td>
+          </tr> 
             </tr>';
           $html.='
-        </tbody>
       </table>
-      <div id="notices">
+
+      <h3>Datos de Relevamiento</h3><br>
+      <table>
+          <tr>';
+          $html.=' 
+          <td class="desc">¿Se encuentra bajo seguimiento de algún profesional luego del Covid-19? '.$ibajo_seguimiento.'</td>   
+          <td class="desc">Profesional: '.$ibajo_seguimiento_profesional.'</td>
+          <tr>
+          <td class="desc">¿Presenta sintomatología?: '.$isintomatologia.'</td>
+          <td class="desc">Sintomatología: '.$iconsignar_sintomatologia.'</td>
+          </tr>
+          <tr>
+          <td class="desc">¿Se encuentra bajo control médico?: '.$ibajo_control.'</td>
+          <td class="desc">Profesional: '.$ibajo_control_profesional.'</td>
+          </tr>
+          <tr>
+          <td class="desc">¿Está tomando medicación actualmente?: '.$imedicacion.'</td>
+          <td class="desc">Medicación: '.$iconsignar_medicacion.'</td>
+          </tr>
+          <tr>
+          <td class="desc">¿Alguién más en la familia fue diagnosticado con Covid-19?: '.$ifamiliar_covid.'</td>
+          <td class="desc">¿Cuenta con medio de movilidad para acercarse al hospital?: '.$imovilidad.'</td>
+          </tr>
+
+            </tr>';
+          $html.='
+      </table>
+
+      <h3>Datos de Intervención de Clínica Médica</h3><br>
+      <table>
+          <tr>';
+          $html.=' 
+          <td class="desc">Estado clínico actual (síntomas presentes): '.$iestado_clinico_actual.'</td>   
+          <td class="desc">Medicación: '.$imedicacion_cl_medica.'</td>
+          <tr>
+          <td class="desc">Estudios realizados hasta la fecha: '.$iestudios_realizados.'</td>
+          <td class="desc">Consulta médica (breve descripción de la información): '.$iconsulta_medica_breve.'</td>
+          </tr>
+          <tr>
+          <td class="desc">¿Requiere interconsulta?: '.$irequiere_interconsulta_cl.'</td>
+          <td class="desc">Consignar especialidad: '.$iconsignar_especialidad_cl.'</td>
+          </tr>
+          <tr>
+          <td class="desc">¿Requiere estudios de Laboratorio?: '.$irequiere_laboratorio.'</td>
+          <td class="desc">Estudios: '.$iconsignar_laboratorio.'</td>
+          </tr>
+          <tr>
+          <td class="desc">¿Requiere consultas posteriores?: '.$irequiere_consulta_posterior.'</td>
+          <td class="desc">Fecha de la intervención: '.$ifecha_int_cl_medica.'</td>
+          </tr>
+          <tr>
+          <td class="desc">Seguimiento: '.$iseguimiento.'</td>
+
+          </tr>
+
+            </tr>';
+          $html.='
+      </table>
+
+      <h3>Datos de Intervención de Psicología</h3><br>
+      <table>
+          <tr>';
+          $html.=' 
+          <td class="desc">¿Presenta sintomatología?: '.$isintomatologia_ps .'</td>   
+          <td class="desc">Fecha de la intervención: '.$ifecha_intervencion.'</td>
+          <tr>
+          <td class="desc">¿Requiere interconsulta?: '.$irequiere_interconsulta_ps.'</td>
+          <td class="desc">Consignar Especialidad: '.$iconsignar_especialidad.'</td>
+          </tr>
+          <tr>
+          <td class="desc">Modalidad de la intervención: '.$imodalidad.'</td>
+          <td class="desc">¿Requiere articulación con otras instituciones de asistencia en Salud Mental?: '.$irequiere_articulacion.'</td>
+          </tr>
+          <tr>
+          <td class="desc">Consignar Institución: '.$iconsignar_institucion.'</td>
+          <td class="desc">Grupo familiar: '.$igrupo_familiar.'</td>
+          </tr>
+          <tr>
+          <td class="desc">Breve reseña de la intervención: '.$ibreve_reseña_intervencion.'</td>
+          <td class="desc">Seguimiento / Acompañamiento: '.$iseguimiento_ps.'</td>
+          </tr>
+
+
+            </tr>';
+          $html.='
+      </table>
+
+
+
+
+      <!--<div id="notices">
         <div>NOTICE:</div>
         <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-      </div>
+      </div> -->
     </main>
     <footer>
       Invoice was created on a computer and is valid without the signature and seal.
