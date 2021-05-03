@@ -14,11 +14,12 @@
         $id_int_cl_medica = $_GET['id_int_cl_medica'];;
         //echo $id_paciente;
         /*$query = "SELECT * FROM paciente WHERE id_paciente = $id_paciente";*/
-        $sql="SELECT p.*, icl.*, ips.*
-        FROM paciente p
+        $sql="SELECT p.*, icl.*
+        FROM paciente p 
         INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
-        INNER JOIN int_psicologica ips ON ips.id_int_cl_medica = icl.id_int_cl_medica
-        WHERE p.id_paciente='$id_paciente' AND icl.id_int_cl_medica='$id_int_cl_medica'";
+        
+        WHERE p.id_paciente = '$id_paciente' ";
+
         //$resultado = mysqli_query($conn, $sql);
         
         $result = mysqli_query($conn, $sql);
@@ -41,7 +42,7 @@
           $idisp_horaria = $row["disp_horaria"];
           $ifecha_alta = $row["fecha_alta"];
           $iestuvo_internado = $row["estuvo_internado"];
-      
+            //datos relevamiento
           $ibajo_seguimiento = $row["bajo_seguimiento"];
           $ibajo_seguimiento_profesional = $row["bajo_seguimiento_profesional"];
           $isintomatologia = $row["sintomatologia"];
@@ -62,22 +63,6 @@
 
         $iconsignar_especialidad_cl=$row["consignar_especialidad"];
         
-        
-        /*if (isset($row["especialidad"])){
-          $iconsignar_especialidad = explode(',', $row["especialidad"] );
-        }*/
-
-        
-                
-                /*if(!empty($row['especialidad'])){
-                // Ciclo para mostrar las casillas checked checkbox.
-                foreach($row['especialidad'] as $selected){
-                echo $selected."</br>";// Imprime resultados
-                }
-                }*/
-                
-                
-        
         $irequiere_laboratorio = $row["requiere_laboratorio"];
         $iconsignar_laboratorio = $row["consignar_laboratorio"];
         $irequiere_consulta_posterior = $row["requiere_consulta_posterior"];  
@@ -88,58 +73,116 @@
         $id_int_cl_medica = $row['id_int_cl_medica'];
 
         // datos de int psicologica
-        //Listado de Parametros
+        
+
+
+
+        
+        }
+
+        
+    
+}
+   
+//SQL PARA PSCILOGIA
+
+if(isset($_GET['id_paciente'])) {
+    $id_paciente = $_GET['id_paciente'];
+    $id_int_cl_medica = $_GET['id_int_cl_medica'];
+
+    $sql3="SELECT p.*, icl.*, ips.* 
+    FROM paciente p 
+    INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente 
+    INNER JOIN int_psicologica ips ON ips.id_int_cl_medica = icl.id_int_cl_medica 
+    WHERE p.id_paciente = '$id_paciente'";
+
+        //$resultado = mysqli_query($conn, $sql);
+        
+        $result3 = mysqli_query($conn, $sql3);
+       
+        if(empty($result3)){
+
+            //consulta psico vacia
+            echo "consulta psico vacia";
+
+        } 
+        
+
+        
+        if (mysqli_num_rows($result3) > 0) {
+          $row3 = mysqli_fetch_assoc($result3);
+
+            //Listado de Parametros
         $id_insertado = mysqli_insert_id($conn);
         //echo $id_insertado;
-        $isintomatologia_ps = $row["sintomatologia_ps"];
+        $isintomatologia_ps = $row3["sintomatologia_ps"];
         //$imedicacion = $row["inputMedicacion"];
-        $irequiere_interconsulta_ps = $row["requiere_interconsulta_ps"];
-        $iconsignar_especialidad = $row["consignar_especialidad_ps"];
-        $ifecha_intervencion = $row["fecha_int_ps"];
+        $irequiere_interconsulta_ps = $row3["requiere_interconsulta_ps"];
+        $iconsignar_especialidad = $row3["consignar_especialidad_ps"];
+        $ifecha_intervencion = $row3["fecha_int_ps"];
         
         
-        $imodalidad=$row["modalidad_ps"];;
+        $imodalidad=$row3["modalidad_ps"];;
         /*if (isset($row["modalidad_ps"])){
           $imodalidad = implode(',', $row["modalidad_ps"] );
         };*/
 
-
-
-        $irequiere_articulacion = $row["requiere_art_institucion"];
-        $iconsignar_institucion = $row["consignar_institucion"];
-        $igrupo_familiar = $row["grupo_familiar"];
-        $ibreve_reseña_intervencion = $row["breve_resenia_int_ps"];
-        $iseguimiento_ps = $row["seguimiento_ps"];  
+        $irequiere_articulacion = $row3["requiere_art_institucion"];
+        $iconsignar_institucion = $row3["consignar_institucion"];
+        $igrupo_familiar = $row3["grupo_familiar"];
+        $ibreve_reseña_intervencion = $row3["breve_resenia_int_ps"];
+        $iseguimiento_ps = $row3["seguimiento_ps"];  
         
         }
-      }
-
-
-    //$sql = "SELECT * FROM paciente WHERE estado = 'A'";
     
-    //$id_paciente = $_GET['id_paciente'];
-    //echo $id_paciente;
-    /*$sql="SELECT p.*, icl.*, ips.*
-    FROM paciente p
-    INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
-    INNER JOIN int_psicologica ips ON ips.id_int_cl_medica = icl.id_int_cl_medica
-    WHERE p.id_paciente='$id_paciente'";
-    $resultado = mysqli_query($conn, $sql);*/
+}
 
-    //obtener id de la tabla int cl medica
-    /*$query_cl ="SELECT MAX(id_int_cl_medica) AS id_cl_medica FROM int_cl_medica";
-    $result_cl = mysqli_query($conn, $query_cl);
-    if ($row = mysqli_fetch_row($result_cl)) {
-    $id_int_cl_medica = trim($row[0]);
-    //echo $id_int_cl_medica;
-    }*/
+//SQL PARA CARDIOLOGIA 
+if(isset($_GET['id_paciente'])) {
+    $id_paciente = $_GET['id_paciente'];
+    $id_int_cl_medica = $_GET['id_int_cl_medica'];
+
+    $sql2="SELECT p.*, icl.*, icar.* 
+    FROM paciente p 
+    INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente 
+    INNER JOIN int_cardiologica icar ON icar.id_int_cl_medica = icl.id_int_cl_medica 
+    WHERE p.id_paciente = '$id_paciente'";
+
+        //$resultado = mysqli_query($conn, $sql);
+        
+        $result2 = mysqli_query($conn, $sql2);
+
+        
+        if (mysqli_num_rows($result2) > 0) {
+          $row2 = mysqli_fetch_assoc($result2);
+
+            $imotivo_consulta_car = $row2["motivo_consulta_car"];
+       
+            $iapp_car = $row2["app_car"];
+            $ibajo_control_medico_car = $row2["bajo_control_medico_car"];
+            $imedico_cabecera_car = $row2["medico_cabecera_car"];
+            $iestudios_complementarios = $row2["estudios_complementarios"];
+            $iconsignar_estudios = $row2["consignar_estudios_car"];
+            
+            $ifecha_int_car = $row2["fecha_int_car"];
+            $iconducta_seguir = $row2["conducta_seguir"];
+        
+        }
+    
+}
+    
+
+
+     
+    
+
     
 ?>
 <?php include_once "header.php"; ?>
 
 <!-- Inicio contenido de las paginas -->
 <div class="container mt-5 bg-light">
-<form id="form_e" method="post" action="int_individual_pdf.php?<?php echo "valorI1=$valorI1&valorI2=$valorI2&valorI3=$valorI3&valorI4=$valorI4&valorI5=$valorI5"; ?>">
+<form id="form_e" method="post" action="">
 
         <div class="container mt-5 bg-light">
         <br>
@@ -382,8 +425,15 @@
                 <textarea class="form-control" name="inputSeguimiento" rows="8" cols="50" disabled><?php echo $iseguimiento; ?></textarea>
             </div>   
         <hr><br>
+
+
         <h2 align='left'><br>Intervención Psicológica</h2><br>
             <div class="form-row">
+        <?php
+       if (mysqli_num_rows($result3) > 0) {
+        $row = mysqli_fetch_assoc($result); ?>
+       
+        
             <div class="form-group col-md-6">
                 <label for="inputSintomatologia_ps">¿Presenta sintomatología?</label><br> 
                 <?php $siIsChecked = $isintomatologia_ps == 'Si' ? 'checked' : ''; ?> 
@@ -395,10 +445,6 @@
                 <label for="inputFechaIntervencion">Fecha de la intervención</label>
                 <input type="text" class="form-control" name="inputFechaIntervencion" value="<?php echo $ifecha_intervencion;?>" disabled>  
             </div>
-            <!-- <div class="form-group col-md-6">
-            <label for="inputMedicacion">Medicación</label>
-                <textarea class="form-control" name="inputMedicacion" rows="3" cols="50" disabled><?php echo $isintomatologia;?></textarea>
-            </div> -->
             <div class="form-group col-md-6">
                 <label for="inputRequiereInterconsulta">¿Requiere interconsulta?</label><br> 
 
@@ -411,8 +457,7 @@
             <div class="form-group col-md-6">
                 <label for="inputConsignarEspecialidad">Consignar Especialidad</label>
                 <textarea class="form-control" name="inputConsignarEspecialidad" rows="3" cols="50" disabled><?php echo $iconsignar_especialidad; ?></textarea>
-            </div>
-            
+            </div>         
             <div class="form-group col-md-6">
             <label for="inputModalidad">Modalidad de la intervención</label><br>
 
@@ -420,15 +465,8 @@
                 echo $imodalidad;
                 ?>
 
-                <!--
-                <label><input type="checkbox" name="modalidad[]" value="LLAMADO TELEFONICO"> LLAMADO TELEFONICO</label>
-                <label><input type="checkbox" name="modalidad[]" value="VIDEOLLAMADA"> VIDEOLLAMADA</label>
-                <label><input type="checkbox" name="modalidad[]" value="PRESENCIAL"> PRESENCIAL</label>
-                <label><input type="checkbox" id="todos" value="Todos"> Todos</label>
-                -->
                 
             </div>
-
             <div class="form-group col-md-6">
                 <label for="inputRequiereArticulacion">¿Requiere articulación con otras instituciones de asistencia en Salud Mental?</label><br> 
 
@@ -453,11 +491,94 @@
             <div class="form-group col-md-12">
                 <label for="inputSeguimientoPsicologia">Seguimiento / Acompañamiento</label>
                 <textarea class="form-control" name="inputSeguimientoPsicologia" rows="8" cols="50" disabled><?php echo $iseguimiento_ps; ?></textarea>
+            </div><br> 
+     
+       <?php }else {
+            echo "No registra una intervención Psicológica";
+        }
+        ?>
+        </div>
+        
+
+            <h2 align='left'><br>Intervención Cardiológica</h2><br>
+            <div class="form-row">
+            <?php
+            if (mysqli_num_rows($result2) > 0) {
+            $row = mysqli_fetch_assoc($result2); ?>
+
+            <div class="form-group col-md-6">
+            <? //echo $imotivo_consulta_car;?>
+            <?php  /*$siIsValue = $imotivo_consulta_car = NULL OR $imotivo_consulta_car = 0  ? '' : $imotivo_consulta_car; */?> 
+                <label for="inputMotivo_consulta_car">Motivo de la consulta</label> 
+                <textarea class="form-control" name="inputMotivo_consulta_car" rows="3" cols="50" disabled><?php echo $imotivo_consulta_car;?></textarea>
+
             </div>
-            <br>
-            <?php echo "<a href='../reportes/int_individual_pdf.php?id_paciente=$id_paciente&id_int_cl_medica=$id_int_cl_medica' role='button' type='submit'>ENVIAR</a>";?>    
+            <div class="form-group col-md-6">
+            <?php /*$siIsValue = $iapp_car = NULL or $iapp_car = !isset( $iapp_car )  ? '' : $iapp_car;*/ ?> 
+            <label for="inputApp_car">Antecedentes Personales Patológicos</label>
+                <textarea class="form-control" name="inputApp_car" rows="3" cols="50" disabled><?php echo $iapp_car;?></textarea>  
+            </div>
+            <div class="form-group col-md-6">
+
+                <?php /*$siIsValue = $ibajo_control_medico_car = NULL or $ibajo_control_medico_car = isset( $ibajo_control_medico_car )  ? '' : $ibajo_control_medico_car;*/ ?> 
+                        
+                <label for="inputBajo_control_medico_car">¿Está bajo control médico?</label><br> 
+                <?php $siIsChecked = $ibajo_control_medico_car == 'Si' ? 'checked' : ''; ?>
+                <input type="radio" name="inputBajo_control_medico_car" value="Si" <?php echo $siIsChecked ?> disabled> Si
+                <?php $noIsChecked = $ibajo_control_medico_car == 'No' ? 'checked' : ''; ?>  
+                <input type="radio" name="inputBajo_control_medico_car" value="No" <?php echo $noIsChecked ?> disabled>  No <br>
+
+            </div>
+            <div class="form-group col-md-6">
+
+                <label for="inputMedico_cabecera_car">Médico de cabecera</label>
+                <?php /*$siIsValue = $imedico_cabecera_car = NULL or $imedico_cabecera_car = isset( $imedico_cabecera_car )  ? '' : $imedico_cabecera_car; */?> 
+                <textarea class="form-control" name="inputMedico_cabecera_car" rows="3" cols="50" disabled><?php echo $imedico_cabecera_car;?></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <?php /*$siIsValue = $iestudios_complementarios = NULL or $iestudios_complementarios = isset( $iestudios_complementarios )  ? '' : $iestudios_complementarios; */?> 
+
+                <label for="inputEstudios_complementarios">Estudios complementarios</label><br> 
+                <?php $siIsChecked = $iestudios_complementarios == 'Si' ? 'checked' : ''; ?>
+                <input type="radio" name="inputEstudios_complementarios" value="Si" <?php echo $siIsChecked ?> disabled> Si
+                <?php $noIsChecked = $iestudios_complementarios == 'No' ? 'checked' : ''; ?>  
+                <input type="radio" name="inputEstudios_complementarios" value="No" <?php echo $noIsChecked ?> disabled>  No <br>
+            </div>
+            <div class="form-group col-md-6">
+                <?php /*$siIsValue = $iconsignar_estudios = NULL or $iconsignar_estudios = isset( $iconsignar_estudios )  ? '' : $iconsignar_estudios; */?> 
+                <label for="inputConsignar_estudios_car">Consignar estudios complementarios</label>
+                <textarea class="form-control" name="inputConsignar_estudios_car" rows="3" cols="50" disabled><?php echo $iconsignar_estudios;?></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <?php /*$siIsValue = $ifecha_int_car = NULL or $ifecha_int_car = isset( $ifecha_int_car )  ? '' : $ifecha_int_car; */?> 
+                <label for="inputFecha_int_car">Fecha de intervención</label>
+                <input type="date" class="form-control" name="inputFecha_int_car" value=<?php echo $ifecha_int_car;?> disabled>
+            </div> 
+            <div class="form-group col-md-6">
+                <?php /*$siIsValue = $iconducta_seguir = NULL or $iconducta_seguir = isset( $iconducta_seguir )  ? '' : $iconducta_seguir; */?> 
+                <label for="inputConducta_seguir">Conducta a seguir</label>
+                <textarea class="form-control" name="inputConducta_seguir" rows="3" cols="50" disabled><?php echo $iconducta_seguir;?></textarea>
+            </div>
+            <?php
+             //echo "<input type='hidden' name='id_paciente' value='$id_paciente'>";
+             //echo "<input type='hidden' name='id_int_cl_medica' value='$id_int_cl_medica'>";
+             //echo $id_int_cl_medica;
+            ?>
+            <?php }else {
+            echo "No registra una intervención Cardiológica";
+        }
+        ?>
+        </div>
+
+            
     </div>
+            
+    
 </form>
+            <br>
+            <div class="m-0 row">
+            <a href="<?php echo "../reportes/int_individual_pdf.php?id_paciente=$id_paciente&id_int_cl_medica=$id_int_cl_medica"; ?>" class="btn btn-warning" >Imprimir</a>
+            </div>
 
 </div>
 </div>

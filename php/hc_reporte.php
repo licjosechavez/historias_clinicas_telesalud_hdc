@@ -14,10 +14,16 @@
     
     $id_paciente = $_GET['id_paciente'];
     //echo $id_paciente;
-    $sql="SELECT p.*, icl.*, ips.*
+    /*$sql="SELECT p.*, icl.*, ips.*
     FROM paciente p
     INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
     INNER JOIN int_psicologica ips ON ips.id_int_cl_medica = icl.id_int_cl_medica
+    /*INNER JOIN int_cardiologica icar ON icar.id_int_cl_medica = icl.id_int_cl_medica
+    WHERE p.id_paciente='$id_paciente'";*/
+
+    $sql="SELECT p.*, icl.*
+    FROM paciente p
+    INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
     WHERE p.id_paciente='$id_paciente'";
     $resultado = mysqli_query($conn, $sql);
 

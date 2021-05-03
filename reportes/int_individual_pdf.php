@@ -90,9 +90,43 @@
         $igrupo_familiar = $row["grupo_familiar"];
         $ibreve_reseña_intervencion = $row["breve_resenia_int_ps"];
         $iseguimiento_ps = $row["seguimiento_ps"];  
+
         
         }
       }
+      //datos cardio
+      if(isset($_GET['id_paciente'])) {
+        $id_paciente = $_GET['id_paciente'];
+        $id_int_cl_medica = $_GET['id_int_cl_medica'];
+    
+        $sql2="SELECT p.*, icl.*, icar.* 
+        FROM paciente p 
+        INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente 
+        INNER JOIN int_cardiologica icar ON icar.id_int_cl_medica = icl.id_int_cl_medica 
+        WHERE p.id_paciente = '$id_paciente' AND icl.id_int_cl_medica='$id_int_cl_medica'";
+    
+            //$resultado = mysqli_query($conn, $sql);
+            
+            $result2 = mysqli_query($conn, $sql2);
+    
+            
+            if (mysqli_num_rows($result2) > 0) {
+              $row2 = mysqli_fetch_assoc($result2);
+    
+                $imotivo_consulta_car = $row2["motivo_consulta_car"];
+           
+                $iapp_car = $row2["app_car"];
+                $ibajo_control_medico_car = $row2["bajo_control_medico_car"];
+                $imedico_cabecera_car = $row2["medico_cabecera_car"];
+                $iestudios_complementarios = $row2["estudios_complementarios"];
+                $iconsignar_estudios = $row2["consignar_estudios_car"];
+                
+                $ifecha_int_car = $row2["fecha_int_car"];
+                $iconducta_seguir = $row2["conducta_seguir"];
+            
+            }
+        
+    }
 
       //echo $iapellido;  
 
@@ -229,6 +263,31 @@ $html = '
           <td class="desc">Breve reseña de la intervención: '.$ibreve_reseña_intervencion.'</td>
           <td class="desc">Seguimiento / Acompañamiento: '.$iseguimiento_ps.'</td>
           </tr>
+
+
+            </tr>';
+          $html.='
+      </table>
+
+      <h3>Datos de Intervención de Cardiología</h3><br>
+      <table>
+          <tr>';
+          $html.=' 
+          <td class="desc">Motivo de la consulta: '.$imotivo_consulta_car .'</td>   
+          <td class="desc">Antecedentes Personales Patológicos: '.$iapp_car.'</td>
+          <tr>
+          <td class="desc">¿Está bajo control médico?: '.$ibajo_control_medico_car.'</td>
+          <td class="desc">Médico de cabecera: '.$imedico_cabecera_car.'</td>
+          </tr>
+          <tr>
+          <td class="desc">Estudios complementarios: '.$iestudios_complementarios.'</td>
+          <td class="desc">Consignar estudios complementarios: '.$iconsignar_estudios.'</td>
+          </tr>
+          <tr>
+          <td class="desc">Fecha de intervención: '.$ifecha_int_car.'</td>
+          <td class="desc">Conducta a seguir: '.$iconducta_seguir.'</td>
+          </tr>
+
 
 
             </tr>';
