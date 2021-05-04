@@ -2,184 +2,131 @@
 
     require "../php/conexion.php";
     session_start();
+    if(!isset($_SESSION["id"])){
+      //header("Location: index.php"); 
+    }
 
-    if(isset($_GET['id_paciente'])) {
-      $id_paciente = $_GET['id_paciente'];
-      $id_int_cl_medica = $_GET['id_int_cl_medica'];;
-      //echo $id_paciente;
-      /*$query = "SELECT * FROM paciente WHERE id_paciente = $id_paciente";*/
-      $sql="SELECT p.*, icl.*
-      FROM paciente p 
-      INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
-      
-      WHERE p.id_paciente = '$id_paciente' ";
+    $nombre_apellido = $_SESSION['nombre_apellido'];
+    $tipo_usuario = $_SESSION["tipo_usuario"];  
+    
 
-      //$resultado = mysqli_query($conn, $sql);
-      
-      $result = mysqli_query($conn, $sql);
-      
-      if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
+    if(isset($_GET['id_paciente']) AND isset ($_GET['id_int_cl_medica'] )) {
+        $id_paciente = $_GET['id_paciente'];
+        $id_int_cl_medica = $_GET['id_int_cl_medica'];
+        //echo $id_paciente;
+        /*$query = "SELECT * FROM paciente WHERE id_paciente = $id_paciente";*/
+        $sql="SELECT p.*, icl.*, ips.*
+        FROM paciente p
+        INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
+        INNER JOIN int_psicologica ips ON ips.id_int_cl_medica = icl.id_int_cl_medica
+        WHERE p.id_paciente=$id_paciente AND icl.id_int_cl_medica=$id_int_cl_medica";
+        //$resultado = mysqli_query($conn, $sql);
         
-        //datos personales y relevamiento
-        $idni = $row["dni"];
+        $result = mysqli_query($conn, $sql);
+        echo $sql;
         
-        $iapellido = $row["apellido"];
-        $inombre = $row["nombre"];
-        //echo $inombre;
-        $itel_cel = $row["tel_cel"];
-        $iemail = $row["email"];
-        $idireccion = $row["direccion"];
-        $iedad = $row["edad"];
-        $iobra_social = $row["obra_social"];
-        $iocupacion = $row["ocupacion"];  
-        $idisp_horaria = $row["disp_horaria"];
-        $ifecha_alta = $row["fecha_alta"];
-        $iestuvo_internado = $row["estuvo_internado"];
-          //datos relevamiento
-        $ibajo_seguimiento = $row["bajo_seguimiento"];
-        $ibajo_seguimiento_profesional = $row["bajo_seguimiento_profesional"];
-        $isintomatologia = $row["sintomatologia"];
-        $iconsignar_sintomatologia = $row["consignar_sintomatologia"];
-        $ibajo_control = $row["bajo_control"];
-        $ibajo_control_profesional = $row["bajo_control_profesional"];
-        $imedicacion = $row["medicacion"];
-        $iconsignar_medicacion = $row["consignar_medicacion"];
-        $ifamiliar_covid = $row["familiar_covid"];
-        $imovilidad = $row["movilidad"];
-
-        // datos de int cl medica
-      $iestado_clinico_actual = $row["estado_clinico_actual"];
-      $imedicacion_cl_medica = $row["medicacion_cl_medica"];
-      $iestudios_realizados = $row["estudios_realizados"];
-      $iconsulta_medica_breve = $row["consulta_medica_breve"];
-      $irequiere_interconsulta_cl = $row["requiere_interconsulta"];
-
-      $iconsignar_especialidad_cl=$row["consignar_especialidad"];
-      
-      $irequiere_laboratorio = $row["requiere_laboratorio"];
-      $iconsignar_laboratorio = $row["consignar_laboratorio"];
-      $irequiere_consulta_posterior = $row["requiere_consulta_posterior"];  
-      $iseguimiento = $row["seguimiento"];
-      $ifecha_int_cl_medica = $row["fecha_intervencion_cl_medica"];
-      //echo $ifecha_int_cl_medica;
-      $id_paciente = $row["id_paciente"];
-      $id_int_cl_medica = $row['id_int_cl_medica'];
-
-      // datos de int psicologica
-      
-      }  
-}
- 
-//SQL PARA PSCILOGIA
-
-if(isset($_GET['id_paciente'])) {
-  $id_paciente = $_GET['id_paciente'];
-  $id_int_cl_medica = $_GET['id_int_cl_medica'];
-
-  $sql3="SELECT p.*, icl.*, ips.* 
-  FROM paciente p 
-  INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente 
-  INNER JOIN int_psicologica ips ON ips.id_int_cl_medica = icl.id_int_cl_medica 
-  WHERE p.id_paciente = '$id_paciente'";
-
-      //$resultado = mysqli_query($conn, $sql);
-      
-      $result3 = mysqli_query($conn, $sql3);
-     
-      if (mysqli_num_rows($result3) > 0) {
-        $row3 = mysqli_fetch_assoc($result3);
-
-          //Listado de Parametros
-      $id_insertado = mysqli_insert_id($conn);
-      //echo $id_insertado;
-      $isintomatologia_ps = $row3["sintomatologia_ps"];
-      //$imedicacion = $row["inputMedicacion"];
-      $irequiere_interconsulta_ps = $row3["requiere_interconsulta_ps"];
-      $iconsignar_especialidad = $row3["consignar_especialidad_ps"];
-      $ifecha_intervencion = $row3["fecha_int_ps"];
-      
-      
-      $imodalidad=$row3["modalidad_ps"];;
-      /*if (isset($row["modalidad_ps"])){
-        $imodalidad = implode(',', $row["modalidad_ps"] );
-      };*/
-
-      $irequiere_articulacion = $row3["requiere_art_institucion"];
-      $iconsignar_institucion = $row3["consignar_institucion"];
-      $igrupo_familiar = $row3["grupo_familiar"];
-      $ibreve_reseña_intervencion = $row3["breve_resenia_int_ps"];
-      $iseguimiento_ps = $row3["seguimiento_ps"];  
-      
-      }else{
-       
-      //echo $id_insertado;
-      $isintomatologia_ps = "";
-      //$imedicacion = $row["inputMedicacion"];
-      $irequiere_interconsulta_ps = "";
-      $iconsignar_especialidad = "";
-      $ifecha_intervencion = "";
-      
-      
-      $imodalidad="";
-      /*if (isset($row["modalidad_ps"])){
-        $imodalidad = implode(',', $row["modalidad_ps"] );
-      };*/
-
-      $irequiere_articulacion = "";
-      $iconsignar_institucion = "";
-      $igrupo_familiar = "";
-      $ibreve_reseña_intervencion = "";
-      $iseguimiento_ps = ""; 
-      }
-  
-}
-
-//SQL PARA CARDIOLOGIA 
-if(isset($_GET['id_paciente'])) {
-  $id_paciente = $_GET['id_paciente'];
-  $id_int_cl_medica = $_GET['id_int_cl_medica'];
-
-  $sql2="SELECT p.*, icl.*, icar.* 
-  FROM paciente p 
-  INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente 
-  INNER JOIN int_cardiologica icar ON icar.id_int_cl_medica = icl.id_int_cl_medica 
-  WHERE p.id_paciente = '$id_paciente'";
-
-      //$resultado = mysqli_query($conn, $sql);
-      
-      $result2 = mysqli_query($conn, $sql2);
-
-      
-      if (mysqli_num_rows($result2) > 0) {
-        $row2 = mysqli_fetch_assoc($result2);
-
-          $imotivo_consulta_car = $row2["motivo_consulta_car"];
-     
-          $iapp_car = $row2["app_car"];
-          $ibajo_control_medico_car = $row2["bajo_control_medico_car"];
-          $imedico_cabecera_car = $row2["medico_cabecera_car"];
-          $iestudios_complementarios = $row2["estudios_complementarios"];
-          $iconsignar_estudios = $row2["consignar_estudios_car"];
+        if (mysqli_num_rows($result) > 0) {
+          $row = mysqli_fetch_assoc($result);
           
-          $ifecha_int_car = $row2["fecha_int_car"];
-          $iconducta_seguir = $row2["conducta_seguir"];
+          //datos personales y relevamiento
+          $idni = $row["dni"];
+          
+          $iapellido = $row["apellido"];
+          $inombre = $row["nombre"];
+          //echo $inombre;
+          $itel_cel = $row["tel_cel"];
+          $iemail = $row["email"];
+          $idireccion = $row["direccion"];
+          $iedad = $row["edad"];
+          $iobra_social = $row["obra_social"];
+          $iocupacion = $row["ocupacion"];  
+          $idisp_horaria = $row["disp_horaria"];
+          $ifecha_alta = $row["fecha_alta"];
+          $iestuvo_internado = $row["estuvo_internado"];
       
-      }else{
-        $imotivo_consulta_car = "";
-     
-        $iapp_car = $row2["app_car"];
-        $ibajo_control_medico_car = "";
-        $imedico_cabecera_car = "";
-        $iestudios_complementarios = "";
-        $iconsignar_estudios = "";
-        
-        $ifecha_int_car = "";
-        $iconducta_seguir = "";
+          $ibajo_seguimiento = $row["bajo_seguimiento"];
+          $ibajo_seguimiento_profesional = $row["bajo_seguimiento_profesional"];
+          $isintomatologia = $row["sintomatologia"];
+          $iconsignar_sintomatologia = $row["consignar_sintomatologia"];
+          $ibajo_control = $row["bajo_control"];
+          $ibajo_control_profesional = $row["bajo_control_profesional"];
+          $imedicacion = $row["medicacion"];
+          $iconsignar_medicacion = $row["consignar_medicacion"];
+          $ifamiliar_covid = $row["familiar_covid"];
+          $imovilidad = $row["movilidad"];
 
+          // datos de int cl medica
+        $iestado_clinico_actual = $row["estado_clinico_actual"];
+        $imedicacion_cl_medica = $row["medicacion_cl_medica"];
+        $iestudios_realizados = $row["estudios_realizados"];
+        $iconsulta_medica_breve = $row["consulta_medica_breve"];
+        $irequiere_interconsulta_cl = $row["requiere_interconsulta"];
+
+        $iconsignar_especialidad_cl=$row["consignar_especialidad"];
+
+        $irequiere_laboratorio = $row["requiere_laboratorio"];
+        $iconsignar_laboratorio = $row["consignar_laboratorio"];
+        $irequiere_consulta_posterior = $row["requiere_consulta_posterior"];  
+        $iseguimiento = $row["seguimiento"];
+        $ifecha_int_cl_medica = $row["fecha_intervencion_cl_medica"];
+        //echo $ifecha_int_cl_medica;
+        $id_paciente = $row["id_paciente"];
+        $id_int_cl_medica = $row['id_int_cl_medica'];
+
+        // datos de int psicologica
+        //Listado de Parametros
+        $id_insertado = mysqli_insert_id($conn);
+        //echo $id_insertado;
+        $isintomatologia_ps = $row["sintomatologia_ps"];
+        //$imedicacion = $row["inputMedicacion"];
+        $irequiere_interconsulta_ps = $row["requiere_interconsulta_ps"];
+        $iconsignar_especialidad = $row["consignar_especialidad_ps"];
+        $ifecha_intervencion = $row["fecha_int_ps"];
+
+        $imodalidad=$row["modalidad_ps"];;
+
+        $irequiere_articulacion = $row["requiere_art_institucion"];
+        $iconsignar_institucion = $row["consignar_institucion"];
+        $igrupo_familiar = $row["grupo_familiar"];
+        $ibreve_reseña_intervencion = $row["breve_resenia_int_ps"];
+        $iseguimiento_ps = $row["seguimiento_ps"];  
+
+        
+        }
       }
-  
-}
+      //datos cardio
+      if(isset($_GET['id_paciente'])) {
+        $id_paciente = $_GET['id_paciente'];
+        $id_int_cl_medica = $_GET['id_int_cl_medica'];
+    
+        $sql2="SELECT p.*, icl.*, icar.* 
+        FROM paciente p 
+        INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente 
+        INNER JOIN int_cardiologica icar ON icar.id_int_cl_medica = icl.id_int_cl_medica 
+        WHERE p.id_paciente = '$id_paciente' AND icl.id_int_cl_medica='$id_int_cl_medica'";
+    
+            //$resultado = mysqli_query($conn, $sql);
+            
+            $result2 = mysqli_query($conn, $sql2);
+    
+            
+            if (mysqli_num_rows($result2) > 0) {
+              $row2 = mysqli_fetch_assoc($result2);
+    
+                $imotivo_consulta_car = $row2["motivo_consulta_car"];
+           
+                $iapp_car = $row2["app_car"];
+                $ibajo_control_medico_car = $row2["bajo_control_medico_car"];
+                $imedico_cabecera_car = $row2["medico_cabecera_car"];
+                $iestudios_complementarios = $row2["estudios_complementarios"];
+                $iconsignar_estudios = $row2["consignar_estudios_car"];
+                
+                $ifecha_int_car = $row2["fecha_int_car"];
+                $iconducta_seguir = $row2["conducta_seguir"];
+            
+            }
+        
+    }
 
       //echo $iapellido;  
 
@@ -295,7 +242,6 @@ $html = '
       </table>
 
       <h3>Datos de Intervención de Psicología</h3><br>
-
       <table>
           <tr>';
           $html.=' 
@@ -326,8 +272,7 @@ $html = '
       <h3>Datos de Intervención de Cardiología</h3><br>
       <table>
           <tr>';
-          $html.='
-          
+          $html.=' 
           <td class="desc">Motivo de la consulta: '.$imotivo_consulta_car .'</td>   
           <td class="desc">Antecedentes Personales Patológicos: '.$iapp_car.'</td>
           <tr>
@@ -357,20 +302,13 @@ $html = '
         <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
       </div> -->
     </main>
+    <footer>
+      Invoice was created on a computer and is valid without the signature and seal.
+    </footer>
   </body>
 </html>
 '; 
-$cabecera = "<span><b>Mi primer documento PDF dinámico con mPDF</b></span>"; 
-$pie = "<span> <a href=\"http://hospital.unlar.edu.ar\">Hospital de Clínicas - UNLaR</a> - <i>Fecha: ".date("d/m/Y")."</i> </span>";
 $mpdf = new \Mpdf\Mpdf(); 
 $css = file_get_contents('style.css'); 
 $mpdf->WriteHTML($css, 1); 
-//$mpdf->WriteHTML($html); 
-//$mpdf->SetHTMLHeader($cabecera);
-//$mpdf->setFooter("{PAGENO}");
-//$mpdf->SetHTMLHeader($cabecera);
-$mpdf->SetHTMLFooter($pie);
-
-//$mpdf->AddPage("", "", 1);
-$mpdf->WriteHTML($html); 
-$mpdf->Output();
+$mpdf->WriteHTML($html); $mpdf->Output();

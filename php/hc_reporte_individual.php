@@ -74,14 +74,7 @@
 
         // datos de int psicologica
         
-
-
-
-        
-        }
-
-        
-    
+        }  
 }
    
 //SQL PARA PSCILOGIA
@@ -171,12 +164,7 @@ if(isset($_GET['id_paciente'])) {
     
 }
     
-
-
-     
-    
-
-    
+   
 ?>
 <?php include_once "header.php"; ?>
 
@@ -185,6 +173,11 @@ if(isset($_GET['id_paciente'])) {
 <form id="form_e" method="post" action="">
 
         <div class="container mt-5 bg-light">
+        <div class="row">
+        <div class="col align-self-end"></div>
+
+            <a href="<?php echo "../reportes/int_individual_pdf.php?id_paciente=$id_paciente&id_int_cl_medica=$id_int_cl_medica"; ?>" class="btn btn-warning" target="_blank" >Imprimir</a>
+        </div>
         <br>
         <h2 align='left'>Datos Personales</h2><br>
         <div class="form-row">
@@ -577,7 +570,7 @@ if(isset($_GET['id_paciente'])) {
 </form>
             <br>
             <div class="m-0 row">
-            <a href="<?php echo "../reportes/int_individual_pdf.php?id_paciente=$id_paciente&id_int_cl_medica=$id_int_cl_medica"; ?>" class="btn btn-warning" >Imprimir</a>
+            <a href="<?php echo "../reportes/int_individual_pdf.php?id_paciente=$id_paciente&id_int_cl_medica=$id_int_cl_medica"; ?>" class="btn btn-warning" target="_blank" >Imprimir</a>
             </div>
 
 </div>
