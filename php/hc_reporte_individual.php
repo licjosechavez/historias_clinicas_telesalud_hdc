@@ -6,19 +6,22 @@
       //header("Location: index.php"); 
     }
 
-    $nombre_apellido = $_SESSION['nombre_apellido'];
-    $tipo_usuario = $_SESSION["tipo_usuario"];
+    //$nombre_apellido = $_SESSION['nombre_apellido'];
+    //$tipo_usuario = $_SESSION["tipo_usuario"];
 
     if(isset($_GET['id_paciente'])) {
         $id_paciente = $_GET['id_paciente'];
-        $id_int_cl_medica = $_GET['id_int_cl_medica'];;
+        $id_int_cl_medica = $_GET['id_int_cl_medica'];
+        $fecha_int_cl = $_GET['fecha_int_cl'];
+        $fecha_int_cl_arr = str_replace('%20', ' ', $fecha_int_cl);
+        //echo $fecha_int_cl_arr;
         //echo $id_paciente;
         /*$query = "SELECT * FROM paciente WHERE id_paciente = $id_paciente";*/
         $sql="SELECT p.*, icl.*
         FROM paciente p 
         INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
         
-        WHERE p.id_paciente = '$id_paciente' ";
+        WHERE p.id_paciente = '$id_paciente' AND icl.fecha_intervencion_cl_medica = '$fecha_int_cl_arr' ";
 
         //$resultado = mysqli_query($conn, $sql);
         
@@ -68,11 +71,8 @@
         $irequiere_consulta_posterior = $row["requiere_consulta_posterior"];  
         $iseguimiento = $row["seguimiento"];
         $ifecha_int_cl_medica = $row["fecha_intervencion_cl_medica"];
-        //echo $ifecha_int_cl_medica;
         $id_paciente = $row["id_paciente"];
         $id_int_cl_medica = $row['id_int_cl_medica'];
-
-        // datos de int psicologica
         
         }  
 }
@@ -87,7 +87,7 @@ if(isset($_GET['id_paciente'])) {
     FROM paciente p 
     INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente 
     INNER JOIN int_psicologica ips ON ips.id_int_cl_medica = icl.id_int_cl_medica 
-    WHERE p.id_paciente = '$id_paciente'";
+    WHERE p.id_paciente = '$id_paciente' AND icl.id_int_cl_medica = '$id_int_cl_medica'";
 
         //$resultado = mysqli_query($conn, $sql);
         
@@ -127,10 +127,31 @@ if(isset($_GET['id_paciente'])) {
         $iseguimiento_ps = $row3["seguimiento_ps"];  
         
         }
+        else{
+            $isintomatologia_ps = '';
+        //$imedicacion = $row["inputMedicacion"];
+        $irequiere_interconsulta_ps = '';
+        $iconsignar_especialidad = '';
+        $ifecha_intervencion = '';
+        
+        
+        $imodalidad='';
+        /*if (isset($row["modalidad_ps"])){
+          $imodalidad = implode(',', $row["modalidad_ps"] );
+        };*/
+
+        $irequiere_articulacion = '';
+        $iconsignar_institucion = '';
+        $igrupo_familiar = '';
+        $ibreve_reseña_intervencion = '';
+        $iseguimiento_ps = '';  
+
+        }
     
 }
 
 //SQL PARA CARDIOLOGIA 
+
 if(isset($_GET['id_paciente'])) {
     $id_paciente = $_GET['id_paciente'];
     $id_int_cl_medica = $_GET['id_int_cl_medica'];
@@ -139,18 +160,28 @@ if(isset($_GET['id_paciente'])) {
     FROM paciente p 
     INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente 
     INNER JOIN int_cardiologica icar ON icar.id_int_cl_medica = icl.id_int_cl_medica 
-    WHERE p.id_paciente = '$id_paciente'";
+    WHERE p.id_paciente = '$id_paciente' AND icl.id_int_cl_medica = '$id_int_cl_medica'";
+
+
 
         //$resultado = mysqli_query($conn, $sql);
         
         $result2 = mysqli_query($conn, $sql2);
 
+   
+        
+        if(!$result2){
+    
+            //consulta psico vacia
+            echo "consulta psico vacia";
+    
+        }
+
         
         if (mysqli_num_rows($result2) > 0) {
           $row2 = mysqli_fetch_assoc($result2);
 
-            $imotivo_consulta_car = $row2["motivo_consulta_car"];
-       
+            $imotivo_consulta_car = $row2["motivo_consulta_car"];   
             $iapp_car = $row2["app_car"];
             $ibajo_control_medico_car = $row2["bajo_control_medico_car"];
             $imedico_cabecera_car = $row2["medico_cabecera_car"];
@@ -160,7 +191,18 @@ if(isset($_GET['id_paciente'])) {
             $ifecha_int_car = $row2["fecha_int_car"];
             $iconducta_seguir = $row2["conducta_seguir"];
         
-        }
+            }
+            else{
+                $imotivo_consulta_car = '';
+                $iapp_car = '';
+                $ibajo_control_medico_car = '';
+                $imedico_cabecera_car = '';
+                $iestudios_complementarios = '';
+                $iconsignar_estudios = '';
+                $ifecha_int_car = '';
+                $iconducta_seguir = '';
+                
+            }
     
 }
     
@@ -176,7 +218,7 @@ if(isset($_GET['id_paciente'])) {
         <div class="row">
         <div class="col align-self-end"></div>
 
-            <a href="<?php echo "../reportes/int_individual_pdf.php?id_paciente=$id_paciente&id_int_cl_medica=$id_int_cl_medica"; ?>" class="btn btn-warning" target="_blank" >Imprimir</a>
+            <a href="<?php echo "../reportes/int_individual_pdf.php?id_paciente=$id_paciente&id_int_cl_medica=$id_int_cl_medica&fecha_int_cl=$fecha_int_cl_arr"; ?>" class="btn btn-warning" target="_blank" >Imprimir</a>
         </div>
         <br>
         <h2 align='left'>Datos Personales</h2><br>
@@ -570,7 +612,7 @@ if(isset($_GET['id_paciente'])) {
 </form>
             <br>
             <div class="m-0 row">
-            <a href="<?php echo "../reportes/int_individual_pdf.php?id_paciente=$id_paciente&id_int_cl_medica=$id_int_cl_medica"; ?>" class="btn btn-warning" target="_blank" >Imprimir</a>
+            <a href="<?php echo "../reportes/int_individual_pdf.php?id_paciente=$id_paciente&id_int_cl_medica=$id_int_cl_medica&fecha_int_cl=$fecha_int_cl_arr"; ?>" class="btn btn-warning" target="_blank" >Imprimir</a>
             </div>
 
 </div>

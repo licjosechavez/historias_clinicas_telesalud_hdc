@@ -9,14 +9,19 @@
     $nombre_apellido = $_SESSION['nombre_apellido'];
     $tipo_usuario = $_SESSION["tipo_usuario"];
     
+    
 
     
-    // funciona $sql = "SELECT * FROM paciente WHERE estado = 'A'"; /*
+    $sql = "SELECT * FROM paciente WHERE estado = 'A'"; 
 
     /*$sql ="SELECT p.*, icl.* FROM paciente p INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
     WHERE p.estado = 'A'";*/
 
-    $sql ="SELECT p.id_paciente, p.dni, p.apellido, p.nombre, icl.id_int_cl_medica FROM paciente p INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente WHERE p.estado = 'A'";
+    /*$sql ="SELECT p.id_paciente, p.dni, p.apellido, p.nombre, icl.id_int_cl_medica FROM paciente p INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente WHERE p.estado = 'A'";*/ 
+
+    /*$sql ="SELECT p.id_paciente, p.dni, p.apellido, p.nombre, icl.id_int_cl_medica FROM paciente p INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente WHERE p.estado = 'A'";*/
+
+    
 
     $resultado = mysqli_query($conn, $sql);
 

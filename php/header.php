@@ -8,7 +8,7 @@
     }
 
     $nombre_apellido = $_SESSION['nombre_apellido'];
-      $tipo_usuario = $_SESSION["tipo_usuario"];
+$tipo_usuario = $_SESSION["tipo_usuario"];
       $usuario = $_SESSION["usuario"];
     
 

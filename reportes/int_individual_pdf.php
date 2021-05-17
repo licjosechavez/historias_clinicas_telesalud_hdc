@@ -5,14 +5,16 @@
 
     if(isset($_GET['id_paciente'])) {
       $id_paciente = $_GET['id_paciente'];
-      $id_int_cl_medica = $_GET['id_int_cl_medica'];;
+      $id_int_cl_medica = $_GET['id_int_cl_medica'];
+      $fecha_int_cl = $_GET['fecha_int_cl'];
+        $fecha_int_cl_arr = str_replace('%20', ' ', $fecha_int_cl);
       //echo $id_paciente;
       /*$query = "SELECT * FROM paciente WHERE id_paciente = $id_paciente";*/
       $sql="SELECT p.*, icl.*
       FROM paciente p 
       INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
       
-      WHERE p.id_paciente = '$id_paciente' ";
+      WHERE p.id_paciente = '$id_paciente' AND icl.fecha_intervencion_cl_medica = '$fecha_int_cl_arr'  ";
 
       //$resultado = mysqli_query($conn, $sql);
       
@@ -81,7 +83,7 @@ if(isset($_GET['id_paciente'])) {
   FROM paciente p 
   INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente 
   INNER JOIN int_psicologica ips ON ips.id_int_cl_medica = icl.id_int_cl_medica 
-  WHERE p.id_paciente = '$id_paciente'";
+  WHERE p.id_paciente = '$id_paciente' AND icl.id_int_cl_medica = '$id_int_cl_medica'";
 
       //$resultado = mysqli_query($conn, $sql);
       
@@ -144,7 +146,7 @@ if(isset($_GET['id_paciente'])) {
   FROM paciente p 
   INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente 
   INNER JOIN int_cardiologica icar ON icar.id_int_cl_medica = icl.id_int_cl_medica 
-  WHERE p.id_paciente = '$id_paciente'";
+  WHERE p.id_paciente = '$id_paciente' AND icl.id_int_cl_medica = '$id_int_cl_medica'";
 
       //$resultado = mysqli_query($conn, $sql);
       
@@ -197,6 +199,9 @@ $html = '
        <div id="logo">
         <img src="./img/logo_hdc_r-2.png" style="width=75px">
       </div>
+      
+      <h4>Fecha de la intervención: '.$ifecha_int_cl_medica.'</h4>
+     
       <!-- <div id="company" class="clearfix">
         <div>Company Name</div>
         <div>455 Foggy Heights,<br /> AZ 85004, US</div>

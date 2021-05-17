@@ -9,38 +9,38 @@
     $nombre_apellido = $_SESSION['nombre_apellido'];
     $tipo_usuario = $_SESSION["tipo_usuario"];
 
-
-    //$sql = "SELECT * FROM paciente WHERE estado = 'A'";
     
     $id_paciente = $_GET['id_paciente'];
-    //echo $id_paciente;
-    /*$sql="SELECT p.*, icl.*, ips.*
-    FROM paciente p
-    INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
-    INNER JOIN int_psicologica ips ON ips.id_int_cl_medica = icl.id_int_cl_medica
-    /*INNER JOIN int_cardiologica icar ON icar.id_int_cl_medica = icl.id_int_cl_medica
-    WHERE p.id_paciente='$id_paciente'";*/
 
     $sql="SELECT p.*, icl.*
     FROM paciente p
     INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
-    WHERE p.id_paciente='$id_paciente'";
+    WHERE p.id_paciente='$id_paciente'
+    ORDER BY icl.fecha_intervencion_cl_medica ASC";
     $resultado = mysqli_query($conn, $sql);
-
-    //obtener id de la tabla int cl medica
-    $query_cl ="SELECT MAX(id_int_cl_medica) AS id_cl_medica FROM int_cl_medica";
-    $result_cl = mysqli_query($conn, $query_cl);
-    if ($row = mysqli_fetch_row($result_cl)) {
-    $id_int_cl_medica = trim($row[0]);
-    //echo $id_int_cl_medica;
-    }
     
 ?>
 <?php include_once "header.php"; ?>
 
 <!-- Inicio contenido de las paginas -->
+        <div>
+          <div class=" container m-0 row">
+              
+          </div>
+        </div>
         <div class="container mt-5 bg-light">
-        <h2 align='left'>Historias Clínicas</h2><br>
+
+        <h2 align='left'>Historias Clínicas</h2>
+        <div>
+
+        <a href="../reportes/historia_clinica_completa.php?id_paciente=<?php echo $id_paciente?>" class="btn btn-warning" title="Imprimir HC completa" target="blank">Imprimir HC completa <i class="fas fa-print"></i> </a>
+        </div>
+        <br>
+        <br>
+        <h3 align='left'>Listado de atenciones/intervenciones</h3>
+        <br>
+        <br>
+            
       
       <div class="col-lg-12">
       <div class="table-responsive">
@@ -51,10 +51,12 @@
         >
           <thead>
             <tr>
+              <th>Id</th>
               <th>Fecha Int. Cl. Médica</th>
               <th>DNI</th>
               <th>Apellido</th>
               <th>Nombres</th>
+              <th>Especialidad consignada</th>
               
               <th>Acciones</th>
               
@@ -64,15 +66,17 @@
           <?php
            while($row = $resultado->fetch_assoc()){?>
               <tr> 
-              <td><?php echo $row["fecha_intervencion_cl_medica"]; ?></td>
+                <td><?php echo $row["id_int_cl_medica"]; ?></td>
+                <td><?php echo $row["fecha_intervencion_cl_medica"]; ?></td>
                 <td><?php echo $row["dni"]; ?></td>
                 <td><?php echo $row["apellido"]; ?></td>
                 <td><?php echo $row["nombre"]; ?></td>
+                <td><?php echo $row["consignar_especialidad"]; ?></td>
                 
-                <td><a href="hc_reporte_individual.php?id_paciente=<?php echo $row['id_paciente']?>&id_int_cl_medica=<?php echo $row['id_int_cl_medica']?>" class="btn btn-info btn-sm" title="Ver Historia Clínica"><i class="fas fa-file-medical"></i> </a>
-                <!--<td><a href="hc_reporte.php?id_paciente=<?php echo $row['id_paciente']?>&id_int_cl_medica=<?php echo $id_int_cl_medica;?>" class="btn btn-info btn-sm" title="Ver Historia Clínica"><i class="fas fa-file-medical"></i> </a> -->
-                <a href="hc_reporte_pdf.php?id_paciente_edit=<?php echo $row['id_paciente']?>" class="btn btn-secondary btn-sm" title="Imprimir"><i class="fas fa-print"></i> </a> 
-                <!--<a href="eliminar_paciente.php?id_paciente_del=<?php echo $row['id_paciente']?>" class="btn btn-danger btn-sm" title="Eliminar paciente"><i class="fas fa-user-times"></i> </a> -->
+                <td><a href="hc_reporte_individual.php?id_paciente=<?php echo $row['id_paciente']?>&id_int_cl_medica=<?php echo $row['id_int_cl_medica']?>&fecha_int_cl=<?php echo $row['fecha_intervencion_cl_medica']?>" class="btn btn-info btn-sm" title="Ver Historia Clínica"><i class="fas fa-search"></i> </a>
+                 
+               
+                <a href="../reportes/int_individual_pdf.php?id_paciente=<?php echo $row['id_paciente']?>&id_int_cl_medica=<?php echo $row['id_int_cl_medica']?>&fecha_int_cl=<?php echo $row['fecha_intervencion_cl_medica']?>" class="btn btn-warning btn-sm" title="Imprimir intervención" target="blank"><i class="fas fa-print"></i> </a>
                 </td>
           
           <?php } ?>

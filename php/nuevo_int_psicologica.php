@@ -185,7 +185,7 @@
 
         </div>
         <br>
-        <input id="form" type="submit" class="btn btn-primary float-right my-2" value="Dar de Alta" name="enviar_form">    
+        <input id="form" type="submit" class="btn btn-primary float-right my-2" value="Guardar intervención" name="enviar_form">    
     </div>
 </form>
 

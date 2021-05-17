@@ -44,19 +44,27 @@ require "conexion.php";
         }
 
         if($result) {
+          echo'<script type="text/javascript">
+          alert("Paciente ingresado exitosamente.-");
+          window.location.href="/ts_hclinicas/php/listado_pacientes.php";
+          </script>';
 
-            echo "<script language='javascript'>
-                alert('PACIENTE INGRESADO EXITOSAMENTE');
+            //echo "<script language='javascript'>
+                //alert('PACIENTE INGRESADO EXITOSAMENTE');
                 
-              </script>";
-             header('Location: /ts_hclinicas/php/listado_pacientes.php');
+              //</script>";
+             //header('Location: /ts_hclinicas/php/listado_pacientes.php');
             
           } 
          else{
-          echo "<script language='javascript'>
+          echo'<script type="text/javascript">
+          alert("Eroor al ingresar paciente.-");
+          window.location.href="/ts_hclinicas/php/listado_pacientes.php";
+          </script>';
+          /*echo "<script language='javascript'>
                 alert('error');
               </script>";
-              header('Location: /ts_hclinicas/php/listado_pacientes.php');
+              header('Location: /ts_hclinicas/php/listado_pacientes.php');*/
           
         }
 

@@ -49,7 +49,8 @@ require "conexion.php";
                 // INSERT EN LA TABLA CARDIO
                 $query4 = "INSERT INTO int_cardiologica (id_int_cl_medica) VALUES ($id_int_cl_medica)";
                 $result4 = mysqli_query($conn, $query4);
-                //header('Location: ./listado_pacientes.php');
+                header('Location: ./listado_pacientes.php');
+                exit();
 
             }
             /*echo "<script language='javascript'>
@@ -69,11 +70,11 @@ require "conexion.php";
                 echo "La especialidad '$psicologica' y '$cardiologica' fue encontrada en la cadena '$iconsignar_especialidad'";
               }*/
               
-              if($pos === 0 && $pos2 === 0) {
+              /*if($pos === 0 && $pos2 === 0) {
                 //echo "eligio las 2";
                 /*echo "<script language='javascript'>
                 alert('INT. CL. MEDICA INGRESADA EXITOSAMENTE');     
-                </script>";*/
+                </script>";
 
                 // INSERT EN LA TABLO PS
                 $query3 = "INSERT INTO int_psicologica (id_int_cl_medica) VALUES ($id_int_cl_medica);";
@@ -90,7 +91,7 @@ require "conexion.php";
                 }
                 else{
                   header('Location: ./listado_pacientes.php');
-                }
+                }*/
                 
                 if($pos === 0) {
                   /*echo "La cadena '$psicologica' fue encontrada en la cadena '$iconsignar_especialidad'";
@@ -112,7 +113,7 @@ require "conexion.php";
                     
                     }
                   
-                    if ($pos === 1 && $pos2 ===1){
+                    if ($iconsignar_especialidad === ''){
                       header('Location: ./listado_pacientes.php');
                     }
                
