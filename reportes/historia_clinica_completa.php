@@ -5,29 +5,7 @@
     $id_paciente = $_GET['id_paciente'];
     //echo $id_paciente;
 
-    
-    function mostrarDatosCar ($resultadoscar) {
-        
-        if ($resultadoscar !=NULL) {
 
-            
-        echo "- ID: ".$resultadoscar['id_int_cardiologica']."<br/> ";
-        echo "- Fecha int: ".$resultadoscar['fecha_int_car']."<br/> ";
-        echo "- Motivo de la consulta: ".$resultadoscar['motivo_consulta_car']."<br/> ";
-        echo "- APP: ".$resultadoscar['app_car']."<br/>";       
-        echo "- ¿Bajo control médico?: ".$resultadoscar['bajo_control_medico_car']."<br/>";       
-        echo "- Médico de cabecera: ".$resultadoscar['medico_cabecera_car']."<br/>";       
-        echo "- Estudios complementarios: ".$resultadoscar['estudios_complementarios']."<br/>";
-        echo "- Consignar estudios: ".$resultadoscar['consignar_estudios_car']."<br/>";       
-        echo "- Conducta a seguir: ".$resultadoscar['conducta_seguir']."<br/>";       
-         
-        echo "<hr>";           
-     
-    }else {
-            echo "<b><u>Intervención Cardiológica</u></b><br><br>";
-            echo "<br/>No hay datos. <br/>";
-        }  
-    }
 
     // Traer datos personales
     $sql4="SELECT * 
@@ -46,26 +24,12 @@
     ORDER BY icl.fecha_intervencion_cl_medica DESC";
 
     $result3 = mysqli_query($conn, $sql3);
+    $cant=mysqli_num_rows($result3);
+    $GLOBALS['cant'];
+    
+    //echo $cant;
 
-    // consulta psico
-    $sql1="SELECT p.*, icl.*, ips.*
-    FROM paciente p
-    INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
-    INNER JOIN int_psicologica ips ON ips.id_int_cl_medica = icl.id_int_cl_medica
-    WHERE p.id_paciente=$id_paciente
-    ORDER BY icl.fecha_intervencion_cl_medica DESC";
-
-    $result1 = mysqli_query($conn, $sql1);
-
-    // consulta cardio
-    $sql2="SELECT p.*, icl.*, icar.*
-    FROM paciente p
-    INNER JOIN int_cl_medica icl ON p.id_paciente = icl.id_paciente
-    INNER JOIN int_cardiologica icar ON icar.id_int_cl_medica = icl.id_int_cl_medica
-    WHERE p.id_paciente=$id_paciente
-    ORDER BY icl.fecha_intervencion_cl_medica DESC";
-
-    $result2 = mysqli_query($conn, $sql2);
+  
     ?>
 
 </body>
@@ -74,23 +38,48 @@
 <html>
 <head>
 <meta charset="utf-8"> 
+<title>Historia Clínica Completa</title>
 </head>
 
 <body>
 <h1>Historia Clinica</h1><br>
 <?php
            while($row = $result4->fetch_assoc()){?>
-              <tr> 
+              
                 Datos personales
-                <td><?php echo "DNI: ".$row["dni"]; ?></td><br>
-                <td><?php echo "Apellido/s: ".$row["apellido"]; ?></td><br>
-                <td><?php echo "Nombre/s: ".$row["nombre"]; ?></td><br>
-                <br><br>
+                <?php echo "DNI: ".$row["dni"]; 
+                /*echo "Apellido/s: ".$row["apellido"];<br>
+                echo "Nombre/s: ".$row["nombre"];<br>
+                $idni = $row["dni"];
+                $iapellido = $row["apellido"];
+                $inombre = $row["nombre"];
+                $itel_cel = $row["tel_cel"];
+                $iemail = $row["email"];
+                $idireccion = $row["direccion"];
+                $iedad = $row["edad"];
+                $iobra_social = $row["obra_social"];
+                $iocupacion = $row["ocupacion"];  
+                $idisp_horaria = $row["disp_horaria"];
+                $ifecha_alta = $row["fecha_alta"];
+                $iestuvo_internado = $row["estuvo_internado"];
+                //datos relevamiento
+                $ibajo_seguimiento = $row["bajo_seguimiento"];
+                $ibajo_seguimiento_profesional = $row["bajo_seguimiento_profesional"];
+                $isintomatologia = $row["sintomatologia"];
+                $iconsignar_sintomatologia = $row["consignar_sintomatologia"];
+                $ibajo_control = $row["bajo_control"];
+                $ibajo_control_profesional = $row["bajo_control_profesional"];
+                $imedicacion = $row["medicacion"];
+                $iconsignar_medicacion = $row["consignar_medicacion"];
+                $ifamiliar_covid = $row["familiar_covid"];
+                $imovilidad = $row["movilidad"];*/
+                 ?>       
           <?php } ?>
 
 <?php
 
-echo "Intervenciones: <br><hr>";
+echo "<br>Cantidad de Intervenciones: $cant <br><hr>";
+
 
 function mostrarDatos ($resultados) {
 
@@ -201,13 +190,8 @@ while ($fila = mysqli_fetch_array($result)){
 
 mostrarDatos($fila);
 
-
-
 }
 
-mysqli_free_result($result);
-
-mysqli_close($link);
 
 ?>
 

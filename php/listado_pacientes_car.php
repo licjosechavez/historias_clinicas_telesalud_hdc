@@ -2,9 +2,10 @@
 
     require "conexion.php";
     session_start();
-    if(!isset($_SESSION["id"])){
-      //header("Location: index.php"); 
-    }
+
+if(!isset($_SESSION["usuario"])){
+  header("Location: ../index.php"); 
+}
     //$id_int_cl_medica = $_GET['id_int_cl_medica'];
     $nombre_apellido = $_SESSION['nombre_apellido'];
     $tipo_usuario = $_SESSION["tipo_usuario"];

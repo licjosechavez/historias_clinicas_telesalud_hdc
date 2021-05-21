@@ -1,9 +1,10 @@
 <?php
 include("conexion.php");
-    session_start();
-    if(!isset($_SESSION["id"])){
-      //header("Location: index.php"); 
-    }
+session_start();
+
+if(!isset($_SESSION["usuario"])){
+  header("Location: ../index.php"); 
+}
 
     $nombre_apellido = $_SESSION['nombre_apellido'];
     $tipo_usuario = $_SESSION["tipo_usuario"];
@@ -178,7 +179,7 @@ if(isset($_GET['id_paciente_edit'])) {
             </div>
             <div class="form-group col-md-6">
                 <label for="inputBajoSeguimientoProfesional">Consignar Profesional</label>
-                <input type="text" class="form-control" name="inputBajoSeguimientoProfesional" value="<?php echo $ibajo_seguimiento_profesional;?>" required>
+                <input type="text" class="form-control" name="inputBajoSeguimientoProfesional" value="<?php echo $ibajo_seguimiento_profesional;?>" >
             </div>
             <div class="form-group col-md-6">
                 <label for="inputSintomatologia">¿Presenta sintomatología?</label><br>
@@ -200,7 +201,7 @@ if(isset($_GET['id_paciente_edit'])) {
             </div>
             <div class="form-group col-md-6">
                 <label for="inputBajoControlProfesional">Consignar Profesional</label>
-                <input type="text" class="form-control" name="inputBajoControlProfesional"  value="<?php echo $ibajo_control_profesional;?>" required>
+                <input type="text" class="form-control" name="inputBajoControlProfesional"  value="<?php echo $ibajo_control_profesional;?>" >
             </div>
             <div class="form-group col-md-6">
                 <label for="inputMedicacion">¿Está tomando medicación actualmente?</label><br> 

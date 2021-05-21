@@ -28,13 +28,14 @@ header {
 }
 
 #logo {
-  width: 90px;
-  text-align: right;
+  width: 100px;
+  text-align: center;
   margin-bottom: 5px;
 }
 
 #logo img {
-  width: 50px;
+  width: 100px;
+  margin-top: 5px;
 }
 
 h1 {

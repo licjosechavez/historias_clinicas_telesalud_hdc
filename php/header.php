@@ -1,10 +1,9 @@
 <?php
     require "conexion.php";
-        //session_start();
+    session_start();
 
-    if(!isset($_SESSION["id"])){
-      //header("Location: index.php"); 
-      
+    if(!isset($_SESSION["usuario"])){
+        header("Location: index.php"); 
     }
 
     $nombre_apellido = $_SESSION['nombre_apellido'];
@@ -73,7 +72,7 @@ $tipo_usuario = $_SESSION["tipo_usuario"];
                 </div>
         </div>
             <a class="navbar-brand" href="index.php">
-                <img src="/ts_hclinicas/img/logo.png" width="300" height="50" class="d-inline-block align-top" alt="">              
+                <img src="/ts_hclinicas/img/logo.png" height="80" class="d-inline-block align-top" alt="">              
             </a>            
             <div class="dropdown">
                 <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

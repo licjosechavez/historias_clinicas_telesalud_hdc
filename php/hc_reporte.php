@@ -1,10 +1,11 @@
 <?php
 
-    require "conexion.php";
-    session_start();
-    if(!isset($_SESSION["id"])){
-      //header("Location: index.php"); 
-    }
+require "conexion.php";
+session_start();
+
+if(!isset($_SESSION["usuario"])){
+  header("Location: ../index.php"); 
+}
 
     $nombre_apellido = $_SESSION['nombre_apellido'];
     $tipo_usuario = $_SESSION["tipo_usuario"];
@@ -33,11 +34,11 @@
         <h2 align='left'>Historias Clínicas</h2>
         <div>
 
-        <a href="../reportes/historia_clinica_completa.php?id_paciente=<?php echo $id_paciente?>" class="btn btn-warning" title="Imprimir HC completa" target="blank">Imprimir HC completa <i class="fas fa-print"></i> </a>
+        <a href="../reportes/hc_completa.php?id_paciente=<?php echo $id_paciente?>" class="btn btn-warning" title="Imprimir HC completa" target="blank">Imprimir HC completa <i class="fas fa-print"></i> </a>
         </div>
         <br>
         <br>
-        <h3 align='left'>Listado de atenciones/intervenciones</h3>
+        <h3 align='left'>Listado de intervenciones</h3>
         <br>
         <br>
             
@@ -73,7 +74,7 @@
                 <td><?php echo $row["nombre"]; ?></td>
                 <td><?php echo $row["consignar_especialidad"]; ?></td>
                 
-                <td><a href="hc_reporte_individual.php?id_paciente=<?php echo $row['id_paciente']?>&id_int_cl_medica=<?php echo $row['id_int_cl_medica']?>&fecha_int_cl=<?php echo $row['fecha_intervencion_cl_medica']?>" class="btn btn-info btn-sm" title="Ver Historia Clínica"><i class="fas fa-search"></i> </a>
+                <td><a href="hc_reporte_individual.php?id_paciente=<?php echo $row['id_paciente']?>&id_int_cl_medica=<?php echo $row['id_int_cl_medica']?>&fecha_int_cl=<?php echo $row['fecha_intervencion_cl_medica']?>" class="btn btn-info btn-sm" title="Ver intervención"><i class="fas fa-search"></i> </a>
                  
                
                 <a href="../reportes/int_individual_pdf.php?id_paciente=<?php echo $row['id_paciente']?>&id_int_cl_medica=<?php echo $row['id_int_cl_medica']?>&fecha_int_cl=<?php echo $row['fecha_intervencion_cl_medica']?>" class="btn btn-warning btn-sm" title="Imprimir intervención" target="blank"><i class="fas fa-print"></i> </a>

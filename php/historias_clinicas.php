@@ -2,9 +2,10 @@
 
     require "conexion.php";
     session_start();
-    if(!isset($_SESSION["id"])){
-      //header("Location: index.php"); 
-    }
+
+if(!isset($_SESSION["usuario"])){
+  header("Location: ../index.php"); 
+}
 
     $nombre_apellido = $_SESSION['nombre_apellido'];
     $tipo_usuario = $_SESSION["tipo_usuario"];
@@ -62,9 +63,9 @@
                 <td><?php echo $row["apellido"]; ?></td>
                 <td><?php echo $row["nombre"]; ?></td>
                 
-                <td><a href="hc_reporte.php?id_paciente=<?php echo $row['id_paciente']?>" class="btn btn-info btn-sm" title="Ver Historia Clínica"><i class="fas fa-file-medical"></i> </a> 
-                <a href="hc_reporte_pdf.php?id_paciente_edit=<?php echo $row['id_paciente']?>" class="btn btn-secondary btn-sm" title="Imprimir"><i class="fas fa-print"></i> </a> 
-                <!--<a href="eliminar_paciente.php?id_paciente_del=<?php echo $row['id_paciente']?>" class="btn btn-danger btn-sm" title="Eliminar paciente"><i class="fas fa-user-times"></i> </a> -->
+                <td><a href="hc_reporte.php?id_paciente=<?php echo $row['id_paciente']?>" class="btn btn-info btn-sm" title="Ver intervención/es"><i class="fas fa-search"></i> </a> 
+                <a href="../reportes/hc_completa.php?id_paciente=<?php echo $row['id_paciente']?>" class="btn btn-warning" title="Imprimir HC completa" target="blank">Imprimir <i class="fas fa-print"></i> </a>
+                
                 </td>
           
           <?php } ?>

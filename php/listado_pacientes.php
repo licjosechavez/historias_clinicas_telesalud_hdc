@@ -2,9 +2,10 @@
 
     require "conexion.php";
     session_start();
-    if(!isset($_SESSION["id"])){
-      //header("Location: index.php"); 
-    }
+
+if(!isset($_SESSION["usuario"])){
+  header("Location: ../index.php"); 
+}
 
     $nombre_apellido = $_SESSION['nombre_apellido'];
     $tipo_usuario = $_SESSION["tipo_usuario"];
@@ -29,6 +30,7 @@
 <!-- Inicio contenido de las paginas -->
         <div class="container mt-5 bg-light">
         <h2 align='left'>Listado de pacientes</h2><br>
+        <a href="/ts_hclinicas/php/nuevo_paciente.php" class="btn btn-success" title="Nuevo paciente" >Nuevo paciente <i class="fas fa-user-plus"></i> </a><br><br>
       
       <div class="col-lg-12">
       <div class="table-responsive">

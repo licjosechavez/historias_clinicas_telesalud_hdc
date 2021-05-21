@@ -1,10 +1,10 @@
 <?php
 require "conexion.php";
-    session_start();
+session_start();
 
-    if(!isset($_SESSION["id"])){
-      //header("Location: index.php"); 
-    }
+if(!isset($_SESSION["usuario"])){
+  header("Location: ../index.php"); 
+}
 
     $nombre_apellido = $_SESSION['nombre_apellido'];
     $tipo_usuario = $_SESSION["tipo_usuario"];
@@ -48,12 +48,6 @@ require "conexion.php";
           alert("Paciente ingresado exitosamente.-");
           window.location.href="/ts_hclinicas/php/listado_pacientes.php";
           </script>';
-
-            //echo "<script language='javascript'>
-                //alert('PACIENTE INGRESADO EXITOSAMENTE');
-                
-              //</script>";
-             //header('Location: /ts_hclinicas/php/listado_pacientes.php');
             
           } 
          else{
@@ -61,10 +55,6 @@ require "conexion.php";
           alert("Eroor al ingresar paciente.-");
           window.location.href="/ts_hclinicas/php/listado_pacientes.php";
           </script>';
-          /*echo "<script language='javascript'>
-                alert('error');
-              </script>";
-              header('Location: /ts_hclinicas/php/listado_pacientes.php');*/
           
         }
 
