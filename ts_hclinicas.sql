@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 29-04-2021 a las 08:37:47
+-- Tiempo de generación: 21-05-2021 a las 10:09:54
 -- Versión del servidor: 5.7.31-0ubuntu0.18.04.1
 -- Versión de PHP: 7.2.24-0ubuntu0.18.04.7
 
@@ -29,13 +29,30 @@ SET time_zone = "+00:00";
 CREATE TABLE `int_cardiologica` (
   `id_int_cardiologica` int(11) NOT NULL,
   `id_int_cl_medica` int(11) NOT NULL,
-  `motivo_consulta_car` varchar(250) COLLATE utf8_spanish2_ci NOT NULL,
-  `app_car` varchar(250) COLLATE utf8_spanish2_ci NOT NULL,
-  `bajo_control_medico_car` varchar(2) COLLATE utf8_spanish2_ci NOT NULL,
-  `medico_cabecera_car` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `estudios_complementarios` varchar(250) COLLATE utf8_spanish2_ci NOT NULL,
-  `conducta_seguir` varchar(300) COLLATE utf8_spanish2_ci NOT NULL
+  `motivo_consulta_car` varchar(250) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `app_car` varchar(250) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `bajo_control_medico_car` varchar(2) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `medico_cabecera_car` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `estudios_complementarios` varchar(250) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `consignar_estudios_car` varchar(250) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `conducta_seguir` varchar(300) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `fecha_int_car` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado_car` varchar(20) COLLATE utf8_spanish2_ci DEFAULT 'NA'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `int_cardiologica`
+--
+
+INSERT INTO `int_cardiologica` (`id_int_cardiologica`, `id_int_cl_medica`, `motivo_consulta_car`, `app_car`, `bajo_control_medico_car`, `medico_cabecera_car`, `estudios_complementarios`, `consignar_estudios_car`, `conducta_seguir`, `fecha_int_car`, `estado_car`) VALUES
+(1, 170, ' asd a', ' asd a', 'Si', 'jhkhjk', 'Si', 'hjkhjkh', 'jkhjk', '2020-03-29 03:00:00', 'A'),
+(2, 171, 'oooo', 'oooo', 'Si', 'oooo', 'Si', 'ooooooo', 'o', '2020-03-21 03:00:00', 'A'),
+(3, 172, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-04 10:58:19', 'NA'),
+(4, 173, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-04 11:01:14', 'NA'),
+(5, 175, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-04 11:03:54', 'NA'),
+(6, 176, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-04 11:04:38', 'NA'),
+(7, 181, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-04 11:12:31', 'NA'),
+(8, 183, 'ca', 'ca', 'Si', 'ca', 'Si', 'ca', 'ca', '2020-03-26 03:00:00', 'A');
 
 -- --------------------------------------------------------
 
@@ -64,18 +81,19 @@ CREATE TABLE `int_cl_medica` (
 --
 
 INSERT INTO `int_cl_medica` (`id_int_cl_medica`, `id_paciente`, `estado_clinico_actual`, `medicacion_cl_medica`, `estudios_realizados`, `consulta_medica_breve`, `requiere_interconsulta`, `consignar_especialidad`, `requiere_laboratorio`, `consignar_laboratorio`, `requiere_consulta_posterior`, `seguimiento`, `fecha_intervencion_cl_medica`) VALUES
-(96, 34, 'estad', 'medic', 'estu', 'cons brev', 'Si', 'PSICOLOGICA', 'Si', 'labo', 'Si', 'segui', '2021-04-17 13:54:57'),
-(97, 33, '', '', '', '', 'Si', 'PSICOLOGICA', 'Si', '', 'Si', '', '2021-04-17 14:06:42'),
-(99, 35, 'ni', 'ini', 'ni', 'ni', 'Si', 'PSICOLOGICA', 'Si', 'nini', 'No', 'nini', '2021-04-20 14:20:37'),
-(102, 34, 'ppppppp', 'ppppppp', 'pppppppp', 'ppppppppp', 'Si', 'PSICOLOGICA', 'Si', 'pppppp', 'No', 'ppppppppp', '2021-04-19 10:48:19'),
-(103, 34, '', '', '', 'sdf', 'Si', 'PSICOLOGICA', 'Si', 'sdf', 'Si', 'sdf', '2021-04-19 10:53:05'),
-(105, 33, 'gdf', 'dfg', 'dfg', 'dfg', 'No', '', 'No', '', 'No', 'dfg', '2021-04-19 11:36:00'),
-(106, 36, 'el paciente tatat', 'toma ever', 'ser hizo tal estudio', 'bre ve desc', 'Si', 'PSICOLOGICA', 'No', '', 'Si', 'se hara seg slsds s sd sd ', '2021-04-20 15:41:39'),
-(107, 24, 'xcv', 'xcv', 'xcv', 'xcv', 'Si', 'PSICOLOGICA', 'No', '', 'Si', 'xcv', '2021-04-20 15:59:00'),
-(108, 28, 'mm', 'm', 'mmmmm', 'mmmmm', 'Si', 'PSICOLOGICA', 'Si', 'mmmm', 'Si', 'mmmmmmmm', '2021-04-20 16:17:33'),
-(109, 37, 'qqqqqq', 'qqqqq', 'qqqqqqqq', 'qqqqqqqqqqqq', 'Si', 'PSICOLOGICA', 'No', '', 'Si', 'qqqqqqqqq', '2021-04-20 16:20:03'),
-(110, 37, 'EEEEE', 'EEEEE', 'EEE', 'EEE', 'Si', 'PSICOLOGICA', 'No', '', 'Si', 'SEEEE', '2021-04-20 16:31:55'),
-(111, 38, 'FFFFFF', 'FFFFFFFFFF F', 'FFFFFFFFF', 'FFFFFFFFFFFFFF', 'No', 'PSICOLOGICA', 'Si', 'FFFFFFF', 'No', 'FFFFFFFFFFFFFF', '2021-04-21 00:18:23');
+(168, 35, 'el estado es', 'ibu 600 ', 'se realizo los', 'el pacientes ttaata', 'No', '', 'Si', 'sf sdf sdf ', 'Si', 'debera seguir con tat tal', '2021-05-02 14:45:19'),
+(169, 28, 'asda sd ', 'hjkhj', 'yrtrt', 'vbnbvnv', 'Si', 'PSICOLOGICA', 'Si', ' dfg ', 'No', 'df gdf g', '2021-05-02 14:47:27'),
+(170, 26, 'bn', 'bnbnbn', 'bnbnb', 'bnbn bn ', 'Si', 'CARDIOLOGICA', 'Si', 'bn  bn ', 'No', 'bn b ', '2021-05-02 14:48:25'),
+(171, 32, 'sdf', 'sdf', 'sdf', 'sdf', 'Si', 'PSICOLOGICA,CARDIOLOGICA', 'Si', 'sdf', 'No', 'sdf', '2021-05-02 14:52:05'),
+(172, 35, 'presta', 'esta tomando tatat', 'orina sanfÂ¿gre', 'asd as asd asd ', 'Si', 'PSICOLOGICA,CARDIOLOGICA', 'Si', 'asda d', 'Si', ' asd asd ad', '2021-05-04 10:58:19'),
+(173, 38, 'dfg', 'dfg', 'dfg', 'dfg', 'Si', 'PSICOLOGICA,CARDIOLOGICA', 'No', '', 'No', 'dfg', '2021-05-04 11:01:14'),
+(174, 33, 'df', 'dfg', 'dfg', 'dfg', 'Si', 'PSICOLOGICA', 'No', '', 'No', 'dfg', '2021-05-04 11:03:13'),
+(175, 23, 'dfg', 'dfg', 'dfg', 'dfg', 'Si', 'CARDIOLOGICA', 'Si', 'dfg', 'No', 'dfg', '2021-05-04 11:03:54'),
+(176, 36, 'dfg', 'dfg', 'dfg', 'dfg', 'Si', 'PSICOLOGICA,CARDIOLOGICA', 'Si', 'dfg', 'Si', 'dfg', '2021-05-04 11:04:38'),
+(180, 34, 'asd', 'asd', 'asd', 'asd', 'No', '', 'Si', 'asd', 'Si', 'asd', '2021-05-04 11:11:42'),
+(181, 38, 'asd', 'asd', 'asd', 'ad', 'Si', 'PSICOLOGICA,CARDIOLOGICA', 'Si', 'asd', 'No', 'asd', '2021-05-04 11:12:31'),
+(182, 40, 'prueba', ' asdasd ', 'asd ', ' asd', 'Si', 'PSICOLOGICA', 'Si', 'zxzx z zxc zxc ', 'No', 'zxczxc', '2021-05-13 20:36:56'),
+(183, 40, 'ca', 'ca', 'ca', 'ca', 'Si', 'CARDIOLOGICA', 'Si', 'ca', 'No', 'car', '2021-05-13 20:37:30');
 
 -- --------------------------------------------------------
 
@@ -104,16 +122,14 @@ CREATE TABLE `int_psicologica` (
 --
 
 INSERT INTO `int_psicologica` (`id_int_psicologica`, `id_int_cl_medica`, `sintomatologia_ps`, `modalidad_ps`, `grupo_familiar`, `requiere_interconsulta_ps`, `consignar_especialidad_ps`, `requiere_art_institucion`, `consignar_institucion`, `breve_resenia_int_ps`, `seguimiento_ps`, `fecha_int_ps`, `estado`) VALUES
-(8, 96, 'Si', 'LLAMADO TELEFONICO', 'asd ', 'Si', 'psiq', 'Si', 'assda', 'asd ', 'asd ', '2020-03-06 03:00:00', 'A'),
-(9, 97, 'Si', 'PRESENCIAL', 'sdf', 'Si', 'sdf', 'Si', '', 'df', 'sdfsdf', '2020-03-01 03:00:00', 'A'),
-(10, 97, 'Si', 'PRESENCIAL', 'sdf', 'Si', 'sdf', 'Si', '', 'df', 'sdfsdf', '2020-03-01 03:00:00', 'A'),
-(11, 99, 'Si', 'VIDEOLLAMADA', 'asd', 'No', '', 'Si', 'asasd', 'asd', 'asdasd', '2020-03-18 03:00:00', 'A'),
-(13, 102, 'Si', 'VIDEOLLAMADA', 'mmmm', 'Si', 'mmm', 'No', '', 'mmmmmmmmm', 'mmmmmmmmm', '2020-03-20 03:00:00', 'A'),
-(15, 106, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-20 15:59:00', 'NA'),
-(16, 108, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-20 16:17:33', 'NA'),
-(17, 109, 'Si', 'PRESENCIAL', 'adad as dasd ', 'No', '', 'Si', 'instituto tal', 'asd asd ', 'as dasd a d', '2021-04-20 03:00:00', 'A'),
-(18, 110, 'Si', 'PRESENCIAL', 'FDFDF', 'Si', 'FFGFGFG', 'Si', 'INSTITUT', 'FGFG', 'FGFG', '2020-03-11 03:00:00', 'A'),
-(19, 111, 'Si', 'VIDEOLLAMADA', 'fffff f f f ', 'Si', 'fff f f', 'Si', 'ffff', ' f f f f f', 'f f f f f f', '2020-03-11 03:00:00', 'A');
+(1, 169, 'Si', 'LLAMADO TELEFONICO', 'asd asd asd ', 'Si', ' asd a ssss', 'No', '', ' asd asd ', ' asd asd ', '2020-03-26 03:00:00', 'A'),
+(3, 171, 'Si', 'PRESENCIAL', 'SDFSF', 'Si', 'SFDSDF', 'Si', 'sdf', 'sdf', 'sdf', '2021-05-03 13:18:44', 'A'),
+(4, 172, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-04 10:58:19', 'NA'),
+(6, 173, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-04 11:01:14', 'NA'),
+(7, 174, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-04 11:03:13', 'NA'),
+(8, 176, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-04 11:04:38', 'NA'),
+(9, 181, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-04 11:12:31', 'NA'),
+(10, 182, 'Si', 'LLAMADO TELEFONICO', 'pp', 'Si', 'pp', 'Si', 'pp', 'pp', 'pp', '2020-03-18 03:00:00', 'A');
 
 -- --------------------------------------------------------
 
@@ -155,10 +171,10 @@ CREATE TABLE `paciente` (
 INSERT INTO `paciente` (`id_paciente`, `dni`, `apellido`, `nombre`, `tel_cel`, `email`, `direccion`, `edad`, `obra_social`, `ocupacion`, `fecha_alta`, `disp_horaria`, `estuvo_internado`, `bajo_seguimiento`, `bajo_seguimiento_profesional`, `sintomatologia`, `consignar_sintomatologia`, `bajo_control`, `bajo_control_profesional`, `medicacion`, `consignar_medicacion`, `familiar_covid`, `movilidad`, `estado`) VALUES
 (23, 30920125, 'Chavez', 'Martin', '380465', 'ms_chavez@hotmail.com', 'Santa Fe 1256', '38', 'SANCOR', 'Lic. en Bioimagenes', '2020-03-11', 'viernes a las 18 hs', 'Si', '', '', '', '', 'No', '', '', '', '', '', 'A'),
 (24, 33654987, 'FONZALIDA', 'MATEO SALVADOR', '380465987', 'MATEO@GMAIL.COM', 'Esperanza s/n', '7', 'APOS', 'ESTUDIANTE', '2020-04-24', 'lun a vie 13 a 18', 'No', 'No', 'DR. CAMPOS', 'Si', 'SintomatologÃ­a...ALGUNA ...', 'Si', 'DR. PARCO PARISI', 'No', 'MEDICACION INGRESADA', 'Si', 'No', 'A'),
-(25, 30920242, 'CHAVEZ AGUILAR', 'JOSE ANTONIO', '3821400010', 't10_chavez@gmail.com', 'Esperanza s/nZ', '36', 'APOS', 'LIC. EN SISTEMAS ', '2021-04-06', 'lun a vie 13 a 19', 'Si', 'Si', 'DR. CARLOS OLIVERA', 'Si', 'FIEBRE, DOLOR DE CABEZA', 'Si', 'DR. CARLOS LLANOS', 'Si', 'IVERMECTIna plus', 'Si', 'Si', 'A'),
+(25, 30920242, 'CHAVEZ AGUILAR', 'JOSE ANTONIO', '3821400010', 't10_chavez@gmail.com', 'Esperanza s/nZ', '36', 'APOS', 'LIC. EN SISTEMAS ', '2021-04-06', 'lun a vie 13 a 19', 'Si', 'Si', 'DR. CARLOS OLIVERA', 'Si', 'FIEBRE, DOLOR DE CABEZA', 'Si', 'DR. CARLOS LLANOS', 'Si', 'IVERMECTIna plus', 'Si', 'Si', 'B'),
 (26, 299787, 'MONTIEL', 'LUCAS', '654321', 'G@GMAIL.COM', 'LAPRIDA 156', '25', 'SUMAR', 'ETUDIANTES ', '2020-03-28', 'MARTES POR LA TARDE', 'Si', 'Si', 'OMAR PARADA', 'No', '', 'Si', 'DR. CARLOS OLIVERA', 'Si', 'IVERMICINA 400 MG', 'No', 'Si', 'A'),
 (27, 29971921, 'VERA', 'LUIS', '38046587', 'luks@gmial.com', 'ASDAS', '37', 'APOS', 'LIC. EN SISTEMAS', '2020-03-19', 'ASDASD', 'Si', 'Si', 'DR. CAMPOS', 'No', '', 'Si', 'DR. CARLOS LLANOS', 'No', '', 'Si', 'No', 'B'),
-(28, 23456, 'TINELLI', 'MARCELO', '2234234', 't10_chavezZ@gmail.com', 'SDFSDF S SDF ', '52', 'GALENO', 'ASASD', '2020-03-19', 'SDFSD', 'Si', 'Si', 'DR. CARLOS OLIVERA', 'Si', 'SDFSDF', 'No', 'DR. CARLOS LLANOSZ', 'Si', 'SDSDF', 'No', 'Si', 'A'),
+(28, 23456, 'TINELLIs', 'MARCELO', '2234234', 't10_chavezZ@gmail.com', 'SDFSDF S SDF ', '52', 'GALENO', 'ASASD ', '2020-03-19', 'SDFSD', 'Si', 'Si', 'DR. CARLOS OLIVERA', 'Si', 'SDFSDF', 'No', 'DR. CARLOS LLANOSZ', 'Si', 'SDSDF', 'No', 'Si', 'A'),
 (31, 777777, 'ronaldo', 'cristina', '', '', '', '36', 'DASUTEN', 'asd', '2020-03-01', '', 'Si', 'No', '', 'No', '', 'No', '', 'No', '', 'Si', 'Si', 'B'),
 (32, 29456789, 'VERA', 'LUIS', '3804457898', 'LUIS@gmail.com', 'ORTIZ DE OCAMPO 666', '38', 'OBRA SOCIAL SIN CONVENIO', 'LICENCIADO EN SISTEMAS', '2020-04-04', 'MARTES 15 HS.', 'No', 'Si', 'DR. CAMPOS', 'No', '', 'No', '', 'Si', 'EVERMICNINA', 'Si', 'Si', 'A'),
 (33, 36124879, 'Girotti', 'Emmanuel', '234234', 'girotti@gmail.com', 'dfg', '21', 'GALENO', 'Deportista', '2020-03-26', 'fdg', 'Si', 'Si', 'dfg', 'Si', 'dfgdfg', 'No', '', 'Si', 'dfgdfgdf', 'No', 'No', 'A'),
@@ -166,7 +182,10 @@ INSERT INTO `paciente` (`id_paciente`, `dni`, `apellido`, `nombre`, `tel_cel`, `
 (35, 555555, 'Gonzalez', 'Nicolas', '38046587', 'niko@gmail.com', 'asas', '50', 'GALENO', 'Medico', '2020-03-21', 'asdsad', 'No', 'No', '', 'No', '', 'Si', 'DR. CARLOS LLANOS', 'No', '', 'Si', 'No', 'A'),
 (36, 30921242, 'Chavez ', 'Jose Antonio', '3821400010', 't10_chavez@gmail.com', 'Esperanza s/n', '37', 'OSUNLAR', 'LIC. EN SISTEMAS  ', '2020-10-12', 'lun a vie 13 a 19', 'No', 'Si', 'DR. CARLOS OLIVERA', 'No', '', 'Si', 'DR. CARLOS LLANOS', 'No', '', 'Si', 'No', 'A'),
 (37, 123456789, 'Quiroga', 'Daniel', '34234234', 'quirog.dan@GMAIL.COM', 'Pairda 658', '75', 'PAMI', 'Medico', '2020-03-28', 'lun a vie 13 a 19', 'Si', 'Si', 'DR. CARLOS OLIVERA', 'Si', 'asaasdasd', 'No', '', 'No', '', 'Si', 'Si', 'A'),
-(38, 3650347, 'CARRIZO', 'LOURDES FLORENCIA ANDREA', '03804105915', 'ffg@g.com', 'Esperanza s/n', '27', 'APOS', 'MEDICA ', '2020-03-26', 'lun a vie 13 a 19', 'Si', 'Si', 'AS', 'Si', 'ASD', 'Si', 'ASD', 'Si', 'ASD', 'No', 'No', 'A');
+(38, 3650347, 'CARRIZO chavez', 'LOURDES FLORENCIA ANDREA', '03804105915', 'ffg@g.com', 'Esperanza s/n', '27', 'APOS', 'MEDICA   ', '2020-03-26', 'lun a vie 13 a 19', 'Si', 'Si', 'AS', 'Si', 'ASD', 'No', '', 'No', 'ASD', 'No', 'No', 'A'),
+(39, 321654987, 'Niz', 'Juan P', '3804654987', 'jpniz@gmail.com', 'sadf', '23', 'GALENO', 'Lic. en Sistemas', '2020-03-19', 'lun a vie 13 a 18', 'Si', 'Si', 'asd', 'Si', 'asdasd', 'Si', 'asdasd', 'Si', 'asdasd', 'No', 'No', 'A'),
+(40, 32145897, 'Chavez', 'Pedro alfonso', '23234', 'pedro_chavez@gmail.com', '654k', '40', 'IPAUSS', 'Futbolista', '2020-03-28', 'lun a vie 13 a 19', 'No', 'Si', 'DR. CAMPOS', 'No', '', 'Si', 'DR. CARLOS LLANOS', 'No', '', 'Si', 'Si', 'A'),
+(41, 32165498, 'ALVAREZ', 'JUAN', '380415687', 'JULI@gmail.com', 'Esperanza 15587', '21', 'SUMAR', 'BANCARIO ', '2020-03-18', 'lunes a viernes de 8 a 19', 'Si', 'Si', 'DR. CARLOS OLIVERAZ', 'Si', 'ASDAS ASD ', 'No', 'FSDF', 'Si', 'IVERMITCA PLUS', 'No', 'Si', 'A');
 
 -- --------------------------------------------------------
 
@@ -238,22 +257,22 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `int_cardiologica`
 --
 ALTER TABLE `int_cardiologica`
-  MODIFY `id_int_cardiologica` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_int_cardiologica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `int_cl_medica`
 --
 ALTER TABLE `int_cl_medica`
-  MODIFY `id_int_cl_medica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id_int_cl_medica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 --
 -- AUTO_INCREMENT de la tabla `int_psicologica`
 --
 ALTER TABLE `int_psicologica`
-  MODIFY `id_int_psicologica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_int_psicologica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --

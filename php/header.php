@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION["usuario"])){
-        header("Location: index.php"); 
+        header("Location: http://localhost/ts_hclinicas/index.php"); 
     }
 
     $nombre_apellido = $_SESSION['nombre_apellido'];

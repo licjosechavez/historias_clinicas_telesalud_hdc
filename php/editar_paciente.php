@@ -119,6 +119,7 @@ if(isset($_GET['id_paciente_edit'])) {
                       <option value="IPAUSS">IPAUSS</option>
                       <option value="DASUTEN">DASUTEN</option>
                       <option value="IOSE">IOSE</option> 
+                      <option value="OSFATUN">OSFATUN</option>
                       <option value="OSPRA">OSPRA</option>
                       <option value="HOSPITAL DR. ENRIQUE VERA BARROS">HOSPITAL DR. ENRIQUE VERA BARROS</option>
                       <option value="RED DE SEGUROS MEDICOS">RED DE SEGUROS MEDICOS</option>
