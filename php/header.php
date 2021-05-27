@@ -63,7 +63,7 @@ $tipo_usuario = $_SESSION["tipo_usuario"];
                     
                     <a class="dropdown-item" href="/ts_hclinicas/php/historias_clinicas.php"><i class="fas fa-file-medical-alt">  </i> Historias Clínicas</a>
                     
-                    <a class="dropdown-item" href="/ts_hclinicas/php/reportes.php"><i class="fas fa-file-pdf"></i> Reportes</a>
+                    <a class="dropdown-item" href="./reportes/reportes.php"><i class="fas fa-file-pdf"></i> Reportes</a>
                     
                     
                     

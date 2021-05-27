@@ -1,6 +1,6 @@
 <?php
 
-    require "conexion.php";
+    //require "conexion.php";
     session_start();
 
 if(!isset($_SESSION["usuario"])){
@@ -25,7 +25,7 @@ if(!isset($_SESSION["usuario"])){
     }
     
 ?>
-<?php include_once "header.php"; ?>
+<?php include_once "../php/header.php"; ?>
 
 <!-- Inicio contenido de las paginas -->
         <div class="container mt-5 bg-light">
@@ -34,7 +34,7 @@ if(!isset($_SESSION["usuario"])){
       <div class="col-lg-12">
         <ul>
         <li>
-          Cantidad de pacientes atendidos por fecha 
+          <a href="list_atend_x_fecha.php">Listado de pacientes atendidos por fecha </a>
         </li>
         </ul>
         <br><br><br><br><br><br><br><br><br><br><br>
@@ -52,6 +52,6 @@ if(!isset($_SESSION["usuario"])){
 <!-- Fin contenido de las paginas-->
 
         
-<?php include_once "footer.php"; ?>
+<?php include_once "../php/footer.php"; ?>
         
         
